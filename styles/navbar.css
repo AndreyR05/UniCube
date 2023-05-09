@@ -1,0 +1,34 @@
+.divNavbar{
+    position: absolute;
+    display: flex;
+    width: 100%;
+    height: 80px;
+    padding: 30px 10px;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.imgNavbar{
+    height: 50px;
+}
+
+.divOptions{
+    display: flex;
+    align-items: center;
+    gap: 30px;
+}
+.divOptions > a{
+    color: #f0f0f0;
+    font-size: 30px;
+    font-weight: 800;
+}
+
+.divUser{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 40px;
+    height: 40px;
+    border: 3px solid #f0f0f0;
+    border-radius: 25px;
+}
