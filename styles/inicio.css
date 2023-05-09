@@ -38,18 +38,16 @@
     color: #171717;
 }
 
-
-
 .group{
     display: flex;
-    width: 350px;
-    height: 350px;
+    width: 300px;
+    height: 300px;
     justify-content: center;
     align-items: center;
 }
 .scene {
-    width: 200px;
-    height: 200px;
+    width: 300px;
+    height: 300px;
     perspective: 600px;
     z-index: 0;
 }
@@ -63,50 +61,52 @@
 }
 @keyframes spin {
     0%{
-        transform: rotateX(-15deg) rotateZ(15deg) rotateY(0deg);
+        transform: rotateX(-20deg) rotateZ(-15deg) rotateY(0deg);
     }
     100%{
-        transform: rotateX(-15deg) rotateZ(15deg) rotateY(-360deg);
+        transform: rotateX(-20deg) rotateZ(-15deg) rotateY(-360deg);
     }
 }
 
 .side {
     position: absolute;
-    width: 200px;
-    height: 200px;
+    width: 300px;
+    height: 300px;
 }
 
 .front  { 
-    transform: rotateY(  0deg) translateZ(100px);
+    transform: rotateY(  0deg) translateZ(150px);
     background-color: #f0f0f0;
 }
 .right  { 
-    transform: rotateY( 90deg) translateZ(100px);
+    transform: rotateY( 90deg) translateZ(150px);
     background-color: #EF4444;
 }
 .back   { 
-    transform: rotateY(180deg) translateZ(100px);
+    transform: rotateY(180deg) translateZ(150px);
     background-color: #FDE047;
 }
 .left   { 
-    transform: rotateY(-90deg) translateZ(100px);
+    transform: rotateY(-90deg) translateZ(150px);
     background-color: #fb923c;
 }
 .top    { 
-    transform: rotateX( 90deg) translateZ(100px);
+    transform: rotateX( 90deg) translateZ(150px);
     background-color: #3B82F6;
 }
 .bottom { 
-    transform: rotateX(-90deg) translateZ(100px);
+    transform: rotateX(-90deg) translateZ(150px);
     background-color: #84CC16;
 }
 
 
 .x{
+    position: relative;
     z-index: 0;
     width: 50px;
     height: 50px;
-    animation: axleX 10s linear infinite;   
+    left: -50px;
+    animation: axleX 10s linear infinite;
 }
 .around{
     width: 50px;
@@ -119,15 +119,14 @@
     height: 50px;
     left: -100px;
     animation: spinAround1 10s linear infinite;
-    filter: drop-shadow(-2px 2px 5px rgba(0, 0, 0, 0.404));
-    /* box-shadow: 0 0 0 10px black; */
+    filter: drop-shadow(-2px 2px 5px rgba(0, 0, 0, 0.400));
 }
 @keyframes axleX{
     0%{
         transform: translateX(0px);
     }
     50%{
-        transform: translateX(250px);
+        transform: translateX(450px);
     }
     100%{
         transform: translateX(0px);
