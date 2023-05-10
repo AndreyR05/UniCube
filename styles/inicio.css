@@ -155,3 +155,58 @@
         transform: rotate(-360deg);
     }
 }
+
+.whatYouFind{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 50px;
+    justify-content:  center;
+    align-items: center;
+    padding: 100px;
+    background: #262626;
+}
+.whatYouFind > p{
+    font-size: 60px;
+    font-weight: 800;
+    color: #f0f0f0
+}
+.row{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 50px
+}
+.collumn{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 40px
+}
+.card{
+    display: flex;
+    align-items: center;
+    width: 500px;
+    height: 150px;
+    color: #f0f0f0;
+    font-size: 23px;
+    padding: 20px;
+    background: #171717;
+}
+.card > p{
+    text-align: justify;
+}
+
+.red{
+    border-left: 30px solid #EF4444;    
+}
+.green{
+    border-left: 30px solid #84CC16;    
+}
+.blue{
+    border-left: 30px solid #3B82F6;    
+}
+.yellow{
+    border-left: 30px solid #EAB308;    
+}
