@@ -187,14 +187,14 @@
 .card{
     display: flex;
     align-items: center;
-    width: 500px;
-    height: 150px;
-    color: #f0f0f0;
-    font-size: 23px;
+    width: 600px;
+    height: 175px;
     padding: 20px;
     background: #171717;
 }
 .card > p{
+    color: #f0f0f0;
+    font-size: 27px;
     text-align: justify;
 }
 
