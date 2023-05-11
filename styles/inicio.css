@@ -1,13 +1,19 @@
 .divMain{
     display: flex;
-    justify-content: space-around;
+    flex-direction: column;
     align-items: center;
     width: 100%;
-    height: 100vh;
+    min-height: 100vh;
     background-image: url("../assets/imgs/background.png");
     background-size: cover;
 }
-
+.contMain{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 100%;
+    min-height: 100vh;
+}
 .divMessageMain{
     display: flex;
     flex-direction: column;
