@@ -231,7 +231,7 @@
 .contTitle{
     position: absolute;
     top: 50px;
-    left: 20px;
+    left: 50px;
     display: flex;
     flex-direction: column;
     gap: 30px;
@@ -248,5 +248,12 @@
     border-radius: 5px;
     width: 300px;
     font-size: 30px;
-    font-weight: 700;
+    font-weight: 800;
+}
+.spaceship{
+    position: absolute;
+    width: 90%;
+    right: 100px;
+    top: 40%;
+    transform: translateY(-50%);
 }
