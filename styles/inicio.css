@@ -1,3 +1,6 @@
+body{
+    background: #262626;
+}
 .divMain{
     display: flex;
     flex-direction: column;
@@ -169,8 +172,7 @@
     gap: 50px;
     justify-content:  center;
     align-items: center;
-    padding: 100px;
-    background: #262626;
+    margin-top: 150px;
 }
 .whatYouFind > p{
     font-size: 60px;
@@ -221,9 +223,7 @@
     display: flex;
     width: 100%;
     height: 100vh;
-    padding: 100px;
-    
-    background: #262626;
+    margin-top: 150px;
     justify-content: center;
     align-items: center;
 }
