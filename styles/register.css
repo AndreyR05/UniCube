@@ -1,0 +1,103 @@
+.divRegister{
+    display: flex;
+    width: 100%;
+    height: 100vh;
+}
+.divSpaceship{
+    width: 50%;
+    height: 100vh;
+    background-image: url("../assets/imgs/background.png");
+    background-size: cover;
+}
+.divForm{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 50%;
+    height: 100vh;
+    padding: 5%;
+    background: #262626;
+    position: relative;
+}
+.top{
+    position: absolute;
+    top: 0
+}
+.divRow{  
+    display: flex;
+    width: 100%;
+    padding: 20px 40px;
+    height: min-content;
+    justify-content: space-between;
+    align-items: center;
+}
+.goBack{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: none;
+    gap: 20px
+}
+.goBack > p{
+    font-size: 30px;
+    font-weight: 700;
+    color: #f0f0f0
+}
+
+.goBack > img{
+    height: 30px;
+}
+.logo{
+    height: 90px;
+}
+
+.divContRegister{
+    display: flex;
+    flex-direction: column;
+    gap: 60px;
+    width: 90%;
+}
+.divLineOptions{
+    display: flex;
+    width: 100%;
+    gap: 30px;
+}
+.divOptions{
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    align-items: center;
+}
+.txtOptions{
+    font-size: 30px;
+    font-weight: 700;
+    color: #f0f0f0
+}
+.divUnderline{
+    width: 50px;
+    height: 8px;
+    background:  #FACC15;
+    border-radius: 5px
+}
+
+form{
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+.divTitle{
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+}
+.title{
+    text-align: center;
+    font-size: 60px;
+    font-weight: 800;
+    color: #f0f0f0;
+}
+.divInput{
+    display: flex;
+    gap: 10px;   
+    border-bottom: 1px solid; 
+}
