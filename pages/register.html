@@ -23,46 +23,71 @@
                     <p>Voltar</p>
                 </button>
                 <img class="logo" src="../assets/imgs/logo.svg" alt="unicube">
-            </div> 
+            </div>  
             <div class="divContRegister">
                 <div class="divLineOptions">
-                    <div class="divOptions">
-                        <p class="txtOptions">Entrar</p>
+                    <div class="divOptions" id="option2">
+                        <button class="txtOptions select" onclick="mude(1)">Entrar</button>
+                        <div class="divUnderline" id="underline"></div>
                     </div>
-                    <div class="divOptions select">
-                        <p class="txtOptions select">Cadastrar</p>
-                        <div class="divUnderline"></div>
+                    <div class="divOptions" id="option2">
+                        <button class="txtOptions" onclick="mude(0)">Cadastrar</button>
                     </div>
                 </div>
-                <form>
-                    <div class="divTitle">
-                        <p class="title">Faça Seu Cadastro</p>
-                    </div>
-                    <div class="divInput">
-                        <div class="divImgInput">
-                            <img src="../assets/icons/userLoginIcon.png" alt="">
+                <div id="forms" class="divContForms">
+                    <form>
+                        <div class="divTitle">
+                            <p class="title">Entre em sua conta</p>
                         </div>
-                        <input type="text" placeholder="Nome">
-                    </div>
-                    <div class="divInput">
-                        <div class="divImgInput">
-                            <img src="../assets/icons/passworIcon.png" alt="">
+                        <div class="divInput">
+                            <div class="divImgInput">
+                                <img src="../assets/icons/userLoginIcon.png" alt="">
+                            </div>
+                            <input type="text" placeholder="Nome">
                         </div>
-                        <input type="text" placeholder="Senha">
-                    </div>
-                    <div class="divInput">
-                        <div class="divImgInput">
-                            <img src="../assets/icons/passworIcon.png" alt="">
+                        <div class="divInput">
+                            <div class="divImgInput">
+                                <img src="../assets/icons/passworIcon.png" alt="">
+                            </div>
+                            <input type="text" placeholder="Senha">
                         </div>
-                        <input type="text" placeholder="Confirmar Senha">
-                    </div>
-                    <div class="divSign">
-                        <button class="signUp">Cadastrar</button>
-                        <p class="doLogin">Já tem uma conta? Faça seu <a class="toLogin">Login!</a></p>
-                    </div>
-                </form>
+                        <div class="divSign">
+                            <button class="signUp">Entrar</button>
+                            <p class="doLogin">Não tem uma conta? Faça já a sua <a class="toLogin">Cadastre-se!</a></p>
+                        </div>
+                    </form>
+                    <form>
+                        <div class="divTitle">
+                            <p class="title">Faça Seu Cadastro</p>
+                        </div>
+                        <div class="divInput">
+                            <div class="divImgInput">
+                                <img src="../assets/icons/userLoginIcon.png" alt="">
+                            </div>
+                            <input type="text" placeholder="Nome">
+                        </div>
+                        <div class="divInput">
+                            <div class="divImgInput">
+                                <img src="../assets/icons/passworIcon.png" alt="">
+                            </div>
+                            <input type="text" placeholder="Senha">
+                        </div>
+                        <div class="divInput">
+                            <div class="divImgInput">
+                                <img src="../assets/icons/passworIcon.png" alt="">
+                            </div>
+                            <input type="text" placeholder="Confirmar Senha">
+                        </div>
+                        <div class="divSign">
+                            <button class="signUp">Cadastrar</button>
+                            <p class="doLogin">Já tem uma conta? Faça seu <a class="toLogin">Login!</a></p>
+                        </div>
+                    </form>
+                 
+                </div>
             </div>
         </div>
     </div>
+    <script src="../scripts/register.js"></script>
 </body>
 </html>

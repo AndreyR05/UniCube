@@ -51,6 +51,15 @@
     height: 90px;
 }
 
+.divContForms{
+    display: flex;
+    flex-direction: row;
+    overflow: hidden;
+    scroll-behavior: smooth;
+    width: 600px;
+    gap: 20px
+}
+
 .divContRegister{
     display: flex;
     flex-direction: column;
@@ -68,6 +77,7 @@
     align-items: center;
 }
 .txtOptions{
+    background: none;
     font-size: 30px;
     font-weight: 700;
     color: #f0f0f04D;
@@ -76,15 +86,41 @@
     color: #F0F0F0
 }
 .divUnderline{
-    width: 50px;
-    height: 8px;
     background:  #FACC15;
-    border-radius: 5px
+    animation: underlineAppear .7s forwards linear;
+}
+
+.disappear{
+    animation: underlineAppear .7s forwards linear reverse;
+}
+
+@keyframes underlineAppear {
+    0%{
+        height: 0;
+        width: 0;
+    }
+    40%{
+        width: 20px;
+        height: 20px;
+        border-radius: 10px;
+    }
+    80%{
+        width: 8px;
+        height: 8px;
+        border-radius: 4px;
+    }
+    100%{
+        width: 70%;
+        height: 8px;
+        border-radius: 4px;
+    }
 }
 
 form{
+    min-width: 600px;
     display: flex;
     flex-direction: column;
+    justify-content: center ;
     gap: 30px;
 }
 .divTitle{
