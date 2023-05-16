@@ -4,10 +4,16 @@
     height: 100vh;
 }
 .divSpaceship{
+    display: flex;
     width: 50%;
     height: 100vh;
     background-image: url("../assets/imgs/background.png");
     background-size: cover;
+    justify-content: center;
+    align-items: center;
+}
+.divSpaceship>img{
+    width: 60%;
 }
 .divForm{
     display: flex;
