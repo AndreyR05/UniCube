@@ -263,7 +263,26 @@ body{
     top: 40%;
     transform: translateY(-50%);
 }
-
+.mostLiked{
+    width: 100%;
+    height: 90vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap:30px
+}
+.mostLiked > .txtTitle{
+    font-size: 70px;
+    font-weight: 800;
+    color: #f0f0f0
+}
+.divContCards{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap:100px;
+}
 .divCard{
     display: flex;
     width: 400px;
@@ -323,7 +342,7 @@ body{
     color: #f0f0f0;
     font-weight: 700;
 }
-.txtTitle{
+.txtContent{
     font-size: 15px;
     color: #f0f0f0;
     font-weight: 700;
