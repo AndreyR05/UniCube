@@ -57,7 +57,7 @@
     overflow: hidden;
     scroll-behavior: smooth;
     width: 600px;
-    gap: 20px
+    gap:100px
 }
 
 .divContRegister{
@@ -82,6 +82,7 @@
     font-weight: 700;
     color: #f0f0f04D;
     transition: all .1s linear;
+    cursor: pointer;
 }
 .select{
     color: #F0F0F0
@@ -197,5 +198,9 @@ form{
     text-align: center;
 }
 .toLogin{
-    color: #FACC15
+    background: none;
+    font-size: 25px;
+    font-weight: 700;
+    color: #FACC15;
+    cursor: pointer;
 }

@@ -5,7 +5,7 @@ function mude(form){
     const option2 = document.getElementById("option2")
     
     if(form == 0){
-        forms.scrollTo(620, 0)
+        forms.scrollTo(700, 0)
         form = 1
 
         underline.classList.add("disappear")
@@ -23,7 +23,7 @@ function mude(form){
         }, 600)
     }
     else{
-        forms.scrollTo(-620, 0)
+        forms.scrollTo(-700, 0)
         form = 0
 
         underline.classList.add("disappear")
