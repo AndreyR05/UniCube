@@ -1,0 +1,32 @@
+.footer{
+    display: flex;
+    width: 100%;
+    height: 100px;
+    padding: 20px;
+    justify-content: space-between;
+    align-items: center;
+    background: #171717
+}
+.divButtons{
+    display: flex;
+    gap: 20px
+}
+.btnFooter{
+    padding: 10px 20px;
+    border-radius: 30px;
+    font-size: 20px;
+    font-weight: 800;
+    color: #171717;
+}
+.redFooter{
+    background: #EF4444;    
+}
+.greenFooter{
+    background: #84CC16;    
+}
+.blueFooter{
+    background: #3B82F6;    
+}
+.logoFooter{
+    height: 60px;
+}
