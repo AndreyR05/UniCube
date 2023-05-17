@@ -1,15 +1,28 @@
 body{
     background: #262626
 }
-.divContent{
+.divContent, .divSearch, .divFollowing{
     display: flex;
-    width: 100%;
     height: 100%;
+    flex-direction: column;
+    gap: 50px
+}
+.divSearch, .divFollowing{
+    min-width: 1300px;
+    justify-content: space-between;
+}
+.divContent{
+    width: 100%;
     padding: 120px;
     justify-content: center;
     align-items: center;
-    flex-direction: column;
-    gap: 50px
+}
+#exploreContent{
+    display: flex;
+    width: 1300px;
+    gap: 100px;
+    overflow: hidden;
+    scroll-behavior: smooth;
 }
 .divRowOptions{
     display: flex;
@@ -75,7 +88,7 @@ body{
 }
 .divRowCards{
     display: flex;
-    gap: 30px
+    justify-content: space-between;
 }
 .divCard{
     display: flex;

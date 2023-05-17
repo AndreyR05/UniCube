@@ -27,181 +27,358 @@
     <div class="divContent">
         <div class="divRowOptions">
             <div class="divOptionsTitle" id="option1">
-                <button class="txtOptionsTitle select" onclick="mude(1)">Entrar</button>
+                <button class="txtOptionsTitle select" onclick="changeScreen(1)">Seguindo</button>
                 <div class="divContUnderline">
                     <div class="divUnderline appear" id="underline"></div>
                 </div>
             </div>
             <div class="divOptionsTitle" id="option2">
-                <button class="txtOptionsTitle" onclick="mude(0)">Cadastrar</button>
+                <button class="txtOptionsTitle" onclick="changeScreen(0)">Explorar</button>
             </div>
         </div>
-        <div class="divRowCards">
-            <div class="divCard">
-                <div class="divTitleCard">
-                    <div class="divUserCard">
-                        <div class="imgUserCard">
-                            <img src="../assets/icons/userIcon.png">
+        <div id="exploreContent">
+            <div class="divFollowing">
+                <div class="divRowCards">
+                    <div class="divCard">
+                        <div class="divTitleCard">
+                            <div class="divUserCard">
+                                <div class="imgUserCard">
+                                    <img src="../assets/icons/userIcon.png">
+                                </div>
+                                <p>Andrey Rodrigues</p>
+                            </div>
+                            <button class="btnLike">
+                                <img src="../assets/icons/hearthIconOutline.png">
+                            </button>
                         </div>
-                        <p>Andrey Rodrigues</p>
+                        <img class="imgCover" src="../assets/imgs/octahedron.png">
+                        <div class="divContentCard">
+                            <p class="txtTitleContent">Solve Octaedro</p>
+                            <p class="txtContent">Nessa publicação será abordade técnicas para a resolução do Octaedro...</p>
+                        </div>
                     </div>
-                    <button class="btnLike">
-                        <img src="../assets/icons/hearthIconOutline.png">
-                    </button>
+                    <div class="divCard">
+                        <div class="divTitleCard">
+                            <div class="divUserCard">
+                                <div class="imgUserCard">
+                                    <img src="../assets/icons/userIcon.png">
+                                </div>
+                                <p>Andrey Rodrigues</p>
+                            </div>
+                            <button class="btnLike">
+                                <img src="../assets/icons/hearthIconOutline.png">
+                            </button>
+                        </div>
+                        <img class="imgCover" src="../assets/imgs/octahedron.png">
+                        <div class="divContentCard">
+                            <p class="txtTitleContent">Solve Octaedro</p>
+                            <p class="txtContent">Nessa publicação será abordade técnicas para a resolução do Octaedro...</p>
+                        </div>
+                    </div>
+                    <div class="divCard">
+                        <div class="divTitleCard">
+                            <div class="divUserCard">
+                                <div class="imgUserCard">
+                                    <img src="../assets/icons/userIcon.png">
+                                </div>
+                                <p>Andrey Rodrigues</p>
+                            </div>
+                            <button class="btnLike">
+                                <img src="../assets/icons/hearthIconOutline.png">
+                            </button>
+                        </div>
+                        <img class="imgCover" src="../assets/imgs/octahedron.png">
+                        <div class="divContentCard">
+                            <p class="txtTitleContent">Solve Octaedro</p>
+                            <p class="txtContent">Nessa publicação será abordade técnicas para a resolução do Octaedro...</p>
+                        </div>
+                    </div>
                 </div>
-                <img class="imgCover" src="../assets/imgs/octahedron.png">
-                <div class="divContentCard">
-                    <p class="txtTitleContent">Solve Octaedro</p>
-                    <p class="txtContent">Nessa publicação será abordade técnicas para a resolução do Octaedro...</p>
+                <div class="divRowCards">
+                    <div class="divCard">
+                        <div class="divTitleCard">
+                            <div class="divUserCard">
+                                <div class="imgUserCard">
+                                    <img src="../assets/icons/userIcon.png">
+                                </div>
+                                <p>Andrey Rodrigues</p>
+                            </div>
+                            <button class="btnLike">
+                                <img src="../assets/icons/hearthIconOutline.png">
+                            </button>
+                        </div>
+                        <img class="imgCover" src="../assets/imgs/octahedron.png">
+                        <div class="divContentCard">
+                            <p class="txtTitleContent">Solve Octaedro</p>
+                            <p class="txtContent">Nessa publicação será abordade técnicas para a resolução do Octaedro...</p>
+                        </div>
+                    </div>
+                    <div class="divCard">
+                        <div class="divTitleCard">
+                            <div class="divUserCard">
+                                <div class="imgUserCard">
+                                    <img src="../assets/icons/userIcon.png">
+                                </div>
+                                <p>Andrey Rodrigues</p>
+                            </div>
+                            <button class="btnLike">
+                                <img src="../assets/icons/hearthIconOutline.png">
+                            </button>
+                        </div>
+                        <img class="imgCover" src="../assets/imgs/octahedron.png">
+                        <div class="divContentCard">
+                            <p class="txtTitleContent">Solve Octaedro</p>
+                            <p class="txtContent">Nessa publicação será abordade técnicas para a resolução do Octaedro...</p>
+                        </div>
+                    </div>
+                    <div class="divCard">
+                        <div class="divTitleCard">
+                            <div class="divUserCard">
+                                <div class="imgUserCard">
+                                    <img src="../assets/icons/userIcon.png">
+                                </div>
+                                <p>Andrey Rodrigues</p>
+                            </div>
+                            <button class="btnLike">
+                                <img src="../assets/icons/hearthIconOutline.png">
+                            </button>
+                        </div>
+                        <img class="imgCover" src="../assets/imgs/octahedron.png">
+                        <div class="divContentCard">
+                            <p class="txtTitleContent">Solve Octaedro</p>
+                            <p class="txtContent">Nessa publicação será abordade técnicas para a resolução do Octaedro...</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="divRowCards">
+                    <div class="divCard">
+                        <div class="divTitleCard">
+                            <div class="divUserCard">
+                                <div class="imgUserCard">
+                                    <img src="../assets/icons/userIcon.png">
+                                </div>
+                                <p>Andrey Rodrigues</p>
+                            </div>
+                            <button class="btnLike">
+                                <img src="../assets/icons/hearthIconOutline.png">
+                            </button>
+                        </div>
+                        <img class="imgCover" src="../assets/imgs/octahedron.png">
+                        <div class="divContentCard">
+                            <p class="txtTitleContent">Solve Octaedro</p>
+                            <p class="txtContent">Nessa publicação será abordade técnicas para a resolução do Octaedro...</p>
+                        </div>
+                    </div>
+                    <div class="divCard">
+                        <div class="divTitleCard">
+                            <div class="divUserCard">
+                                <div class="imgUserCard">
+                                    <img src="../assets/icons/userIcon.png">
+                                </div>
+                                <p>Andrey Rodrigues</p>
+                            </div>
+                            <button class="btnLike">
+                                <img src="../assets/icons/hearthIconOutline.png">
+                            </button>
+                        </div>
+                        <img class="imgCover" src="../assets/imgs/octahedron.png">
+                        <div class="divContentCard">
+                            <p class="txtTitleContent">Solve Octaedro</p>
+                            <p class="txtContent">Nessa publicação será abordade técnicas para a resolução do Octaedro...</p>
+                        </div>
+                    </div>
+                    <div class="divCard">
+                        <div class="divTitleCard">
+                            <div class="divUserCard">
+                                <div class="imgUserCard">
+                                    <img src="../assets/icons/userIcon.png">
+                                </div>
+                                <p>Andrey Rodrigues</p>
+                            </div>
+                            <button class="btnLike">
+                                <img src="../assets/icons/hearthIconOutline.png">
+                            </button>
+                        </div>
+                        <img class="imgCover" src="../assets/imgs/octahedron.png">
+                        <div class="divContentCard">
+                            <p class="txtTitleContent">Solve Octaedro</p>
+                            <p class="txtContent">Nessa publicação será abordade técnicas para a resolução do Octaedro...</p>
+                        </div>
+                    </div>
                 </div>
             </div>
-            <div class="divCard">
-                <div class="divTitleCard">
-                    <div class="divUserCard">
-                        <div class="imgUserCard">
-                            <img src="../assets/icons/userIcon.png">
+            <div class="divSearch">
+                <div class="divRowCards">
+                    <div class="divCard">
+                        <div class="divTitleCard">
+                            <div class="divUserCard">
+                                <div class="imgUserCard">
+                                    <img src="../assets/icons/userIcon.png">
+                                </div>
+                                <p>Andrey Rodrigues</p>
+                            </div>
+                            <button class="btnLike">
+                                <img src="../assets/icons/hearthIconOutline.png">
+                            </button>
                         </div>
-                        <p>Andrey Rodrigues</p>
-                    </div>
-                    <button class="btnLike">
-                        <img src="../assets/icons/hearthIconOutline.png">
-                    </button>
-                </div>
-                <img class="imgCover" src="../assets/imgs/octahedron.png">
-                <div class="divContentCard">
-                    <p class="txtTitleContent">Solve Octaedro</p>
-                    <p class="txtContent">Nessa publicação será abordade técnicas para a resolução do Octaedro...</p>
-                </div>
-            </div>
-            <div class="divCard">
-                <div class="divTitleCard">
-                    <div class="divUserCard">
-                        <div class="imgUserCard">
-                            <img src="../assets/icons/userIcon.png">
+                        <img class="imgCover" src="../assets/imgs/octahedron.png">
+                        <div class="divContentCard">
+                            <p class="txtTitleContent">Solve Octaedro</p>
+                            <p class="txtContent">Nessa publicação será abordade técnicas para a resolução do Octaedro...</p>
                         </div>
-                        <p>Andrey Rodrigues</p>
                     </div>
-                    <button class="btnLike">
-                        <img src="../assets/icons/hearthIconOutline.png">
-                    </button>
-                </div>
-                <img class="imgCover" src="../assets/imgs/octahedron.png">
-                <div class="divContentCard">
-                    <p class="txtTitleContent">Solve Octaedro</p>
-                    <p class="txtContent">Nessa publicação será abordade técnicas para a resolução do Octaedro...</p>
-                </div>
-            </div>
-        </div><div class="divRowCards">
-            <div class="divCard">
-                <div class="divTitleCard">
-                    <div class="divUserCard">
-                        <div class="imgUserCard">
-                            <img src="../assets/icons/userIcon.png">
+                    <div class="divCard">
+                        <div class="divTitleCard">
+                            <div class="divUserCard">
+                                <div class="imgUserCard">
+                                    <img src="../assets/icons/userIcon.png">
+                                </div>
+                                <p>Andrey Rodrigues</p>
+                            </div>
+                            <button class="btnLike">
+                                <img src="../assets/icons/hearthIconOutline.png">
+                            </button>
                         </div>
-                        <p>Andrey Rodrigues</p>
-                    </div>
-                    <button class="btnLike">
-                        <img src="../assets/icons/hearthIconOutline.png">
-                    </button>
-                </div>
-                <img class="imgCover" src="../assets/imgs/octahedron.png">
-                <div class="divContentCard">
-                    <p class="txtTitleContent">Solve Octaedro</p>
-                    <p class="txtContent">Nessa publicação será abordade técnicas para a resolução do Octaedro...</p>
-                </div>
-            </div>
-            <div class="divCard">
-                <div class="divTitleCard">
-                    <div class="divUserCard">
-                        <div class="imgUserCard">
-                            <img src="../assets/icons/userIcon.png">
+                        <img class="imgCover" src="../assets/imgs/octahedron.png">
+                        <div class="divContentCard">
+                            <p class="txtTitleContent">Solve Octaedro</p>
+                            <p class="txtContent">Nessa publicação será abordade técnicas para a resolução do Octaedro...</p>
                         </div>
-                        <p>Andrey Rodrigues</p>
                     </div>
-                    <button class="btnLike">
-                        <img src="../assets/icons/hearthIconOutline.png">
-                    </button>
-                </div>
-                <img class="imgCover" src="../assets/imgs/octahedron.png">
-                <div class="divContentCard">
-                    <p class="txtTitleContent">Solve Octaedro</p>
-                    <p class="txtContent">Nessa publicação será abordade técnicas para a resolução do Octaedro...</p>
-                </div>
-            </div>
-            <div class="divCard">
-                <div class="divTitleCard">
-                    <div class="divUserCard">
-                        <div class="imgUserCard">
-                            <img src="../assets/icons/userIcon.png">
+                    <div class="divCard">
+                        <div class="divTitleCard">
+                            <div class="divUserCard">
+                                <div class="imgUserCard">
+                                    <img src="../assets/icons/userIcon.png">
+                                </div>
+                                <p>Andrey Rodrigues</p>
+                            </div>
+                            <button class="btnLike">
+                                <img src="../assets/icons/hearthIconOutline.png">
+                            </button>
                         </div>
-                        <p>Andrey Rodrigues</p>
-                    </div>
-                    <button class="btnLike">
-                        <img src="../assets/icons/hearthIconOutline.png">
-                    </button>
-                </div>
-                <img class="imgCover" src="../assets/imgs/octahedron.png">
-                <div class="divContentCard">
-                    <p class="txtTitleContent">Solve Octaedro</p>
-                    <p class="txtContent">Nessa publicação será abordade técnicas para a resolução do Octaedro...</p>
-                </div>
-            </div>
-        </div><div class="divRowCards">
-            <div class="divCard">
-                <div class="divTitleCard">
-                    <div class="divUserCard">
-                        <div class="imgUserCard">
-                            <img src="../assets/icons/userIcon.png">
+                        <img class="imgCover" src="../assets/imgs/octahedron.png">
+                        <div class="divContentCard">
+                            <p class="txtTitleContent">Solve Octaedro</p>
+                            <p class="txtContent">Nessa publicação será abordade técnicas para a resolução do Octaedro...</p>
                         </div>
-                        <p>Andrey Rodrigues</p>
                     </div>
-                    <button class="btnLike">
-                        <img src="../assets/icons/hearthIconOutline.png">
-                    </button>
                 </div>
-                <img class="imgCover" src="../assets/imgs/octahedron.png">
-                <div class="divContentCard">
-                    <p class="txtTitleContent">Solve Octaedro</p>
-                    <p class="txtContent">Nessa publicação será abordade técnicas para a resolução do Octaedro...</p>
-                </div>
-            </div>
-            <div class="divCard">
-                <div class="divTitleCard">
-                    <div class="divUserCard">
-                        <div class="imgUserCard">
-                            <img src="../assets/icons/userIcon.png">
+                <div class="divRowCards">
+                    <div class="divCard">
+                        <div class="divTitleCard">
+                            <div class="divUserCard">
+                                <div class="imgUserCard">
+                                    <img src="../assets/icons/userIcon.png">
+                                </div>
+                                <p>Andrey Rodrigues</p>
+                            </div>
+                            <button class="btnLike">
+                                <img src="../assets/icons/hearthIconOutline.png">
+                            </button>
                         </div>
-                        <p>Andrey Rodrigues</p>
-                    </div>
-                    <button class="btnLike">
-                        <img src="../assets/icons/hearthIconOutline.png">
-                    </button>
-                </div>
-                <img class="imgCover" src="../assets/imgs/octahedron.png">
-                <div class="divContentCard">
-                    <p class="txtTitleContent">Solve Octaedro</p>
-                    <p class="txtContent">Nessa publicação será abordade técnicas para a resolução do Octaedro...</p>
-                </div>
-            </div>
-            <div class="divCard">
-                <div class="divTitleCard">
-                    <div class="divUserCard">
-                        <div class="imgUserCard">
-                            <img src="../assets/icons/userIcon.png">
+                        <img class="imgCover" src="../assets/imgs/octahedron.png">
+                        <div class="divContentCard">
+                            <p class="txtTitleContent">Solve Octaedro</p>
+                            <p class="txtContent">Nessa publicação será abordade técnicas para a resolução do Octaedro...</p>
                         </div>
-                        <p>Andrey Rodrigues</p>
                     </div>
-                    <button class="btnLike">
-                        <img src="../assets/icons/hearthIconOutline.png">
-                    </button>
+                    <div class="divCard">
+                        <div class="divTitleCard">
+                            <div class="divUserCard">
+                                <div class="imgUserCard">
+                                    <img src="../assets/icons/userIcon.png">
+                                </div>
+                                <p>Andrey Rodrigues</p>
+                            </div>
+                            <button class="btnLike">
+                                <img src="../assets/icons/hearthIconOutline.png">
+                            </button>
+                        </div>
+                        <img class="imgCover" src="../assets/imgs/octahedron.png">
+                        <div class="divContentCard">
+                            <p class="txtTitleContent">Solve Octaedro</p>
+                            <p class="txtContent">Nessa publicação será abordade técnicas para a resolução do Octaedro...</p>
+                        </div>
+                    </div>
+                    <div class="divCard">
+                        <div class="divTitleCard">
+                            <div class="divUserCard">
+                                <div class="imgUserCard">
+                                    <img src="../assets/icons/userIcon.png">
+                                </div>
+                                <p>Andrey Rodrigues</p>
+                            </div>
+                            <button class="btnLike">
+                                <img src="../assets/icons/hearthIconOutline.png">
+                            </button>
+                        </div>
+                        <img class="imgCover" src="../assets/imgs/octahedron.png">
+                        <div class="divContentCard">
+                            <p class="txtTitleContent">Solve Octaedro</p>
+                            <p class="txtContent">Nessa publicação será abordade técnicas para a resolução do Octaedro...</p>
+                        </div>
+                    </div>
                 </div>
-                <img class="imgCover" src="../assets/imgs/octahedron.png">
-                <div class="divContentCard">
-                    <p class="txtTitleContent">Solve Octaedro</p>
-                    <p class="txtContent">Nessa publicação será abordade técnicas para a resolução do Octaedro...</p>
+                <div class="divRowCards">
+                    <div class="divCard">
+                        <div class="divTitleCard">
+                            <div class="divUserCard">
+                                <div class="imgUserCard">
+                                    <img src="../assets/icons/userIcon.png">
+                                </div>
+                                <p>Andrey Rodrigues</p>
+                            </div>
+                            <button class="btnLike">
+                                <img src="../assets/icons/hearthIconOutline.png">
+                            </button>
+                        </div>
+                        <img class="imgCover" src="../assets/imgs/octahedron.png">
+                        <div class="divContentCard">
+                            <p class="txtTitleContent">Solve Octaedro</p>
+                            <p class="txtContent">Nessa publicação será abordade técnicas para a resolução do Octaedro...</p>
+                        </div>
+                    </div>
+                    <div class="divCard">
+                        <div class="divTitleCard">
+                            <div class="divUserCard">
+                                <div class="imgUserCard">
+                                    <img src="../assets/icons/userIcon.png">
+                                </div>
+                                <p>Andrey Rodrigues</p>
+                            </div>
+                            <button class="btnLike">
+                                <img src="../assets/icons/hearthIconOutline.png">
+                            </button>
+                        </div>
+                        <img class="imgCover" src="../assets/imgs/octahedron.png">
+                        <div class="divContentCard">
+                            <p class="txtTitleContent">Solve Octaedro</p>
+                            <p class="txtContent">Nessa publicação será abordade técnicas para a resolução do Octaedro...</p>
+                        </div>
+                    </div>
+                    <div class="divCard">
+                        <div class="divTitleCard">
+                            <div class="divUserCard">
+                                <div class="imgUserCard">
+                                    <img src="../assets/icons/userIcon.png">
+                                </div>
+                                <p>Andrey Rodrigues</p>
+                            </div>
+                            <button class="btnLike">
+                                <img src="../assets/icons/hearthIconOutline.png">
+                            </button>
+                        </div>
+                        <img class="imgCover" src="../assets/imgs/octahedron.png">
+                        <div class="divContentCard">
+                            <p class="txtTitleContent">Solve Octaedro</p>
+                            <p class="txtContent">Nessa publicação será abordade técnicas para a resolução do Octaedro...</p>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
+    <script src="../scripts/explore.js"></script>
 </body>
 </html>
