@@ -7,6 +7,9 @@
     justify-content: space-between;
     align-items: center;
 }
+.divNavbarBackground{
+    background: #171717
+}
 
 .imgNavbar{
     height: 50px;
