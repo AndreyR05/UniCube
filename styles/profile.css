@@ -88,3 +88,165 @@ body{
     border-radius: 5px;
     padding: 5px;
 }
+
+.divPostsArea{
+    display: flex;
+    flex-direction: column;
+    width: 60%;
+    height: 100%;
+    gap: 50px
+}
+.divRowTitle{
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+}
+.divRowOptions{
+    display: flex;
+    gap: 50px;
+}
+.divOptionsTitle{
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    align-items: center;
+}
+.txtOptionsTitle{
+    background: none;
+    font-size: 30px;
+    font-weight: 700;
+    color: #f0f0f04D;
+    transition: all .1s linear;
+    cursor: pointer;
+}
+.select{
+    color: #F0F0F0
+}
+.divContUnderline{
+    display: flex;
+    justify-content: center;
+    width:  70%;
+    height: 8px;
+}
+.divUnderline{
+    position: relative;
+    background:  #FACC15;
+    border-radius: 4px;
+    width:  100%;
+    height: 8px;
+}
+.appear{
+    animation: appear .3s forwards linear;
+}
+.disappear{
+    animation: disappear .3s forwards linear;
+}
+
+@keyframes appear {
+    0%{
+        width: 0px;
+        height: 0px;
+    }
+    100%{
+        width:  100%;
+        height: 8px;
+    }
+}
+
+@keyframes disappear {
+    0%{
+        width:  100%;
+        height: 8px;
+    }
+    100%{
+        width: 0px;
+        height: 0px;
+    }
+}
+
+
+.btnNewPost{
+    background: #FACC15;
+    font-size: 25px;
+    font-weight: 700;
+    color: #171717;
+    border-radius: 5px;
+    padding: 0px 20px;
+}
+
+.divTypePost{
+    display: flex;
+    flex-direction: column;
+    gap: 30px
+}
+.divTypePost > p{
+    font-size: 35px;
+    font-weight: 70;
+    color: #f0f0f0;
+}
+.divRowCards{
+    display: flex;
+    justify-content: space-between;
+}
+.divCard{
+    display: flex;
+    width: 200px;
+    background: #171717;
+    flex-direction: column;
+    padding: 10px;
+    gap: 20px;
+    border-radius: 5px;
+}
+.divUserCard{
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    align-items: center;
+}
+.imgUserCard{
+    display: flex;
+    justify-content: center;
+    justify-content: center ;
+    width: 40px;
+    height: 40px;
+    padding: 5px;
+    border: 3px solid #f0f0f0;
+    border-radius: 100px;
+}
+.btnLike{
+    display: flex;
+    background: none;
+    width: 35px;
+}
+.btnLike > img{
+    width: 100%;
+}
+.divUserCard > p{
+    font-size: 20px;
+    color: #f0f0f0;
+    font-weight: 700;
+}
+.divTitleCard{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.imgCover{
+    width: 100%;
+    height: 200px
+}
+.divContentCard{
+    display: flex;
+    flex-direction: column;
+    gap: 20px
+}
+.txtTitleContent{
+    font-size: 20px;
+    color: #f0f0f0;
+    font-weight: 700;
+}
+.txtContent{
+    font-size: 15px;
+    color: #f0f0f0;
+    font-weight: 700;
+}
