@@ -13,7 +13,7 @@ var userRouter = require("./src/routes/user")
 
 app.use(express.json())
 app.use(express.urlencoded({ extended: false }))
-app.use(express.static(path.join(__dirname, "public/pages")))
+app.use(express.static(path.join(__dirname, "Public")))
 
 app.use(cors())
 
@@ -21,5 +21,5 @@ app.use("/", indexRouter)
 app.use("/user", userRouter)
 
 app.listen(PORTA, function () {
-    console.log(`Servidor rodando dentro da: http://localhost:${PORTA} - Ambiente de ${process.env.AMBIENTE_PROCESSO} \n`);
+    console.log(`Servidor rodando dentro da: http://localhost:${PORTA} - Ambiente de ${process.env.AMBIENTE_PROCESSO}`);
 });
