@@ -18,21 +18,16 @@ function infos(req, res) {
 }
 
 function login(req, res) {
-    var email = req.body.emailServer;
-    var senha = req.body.senhaServer;
+    var username = req.body.username;
+    var password = req.body.password;
 
-    if (email == undefined) {
-        res.status(400).send("Seu email está undefined!");
-    } else if (senha == undefined) {
-        res.status(400).send("Sua senha está indefinida!");
+    if (username || senha) {
+        res.status(400).send("Existe dados não preenchidos");
     } else {
         
         userModel.login(email, senha)
             .then(
                 function (resultado) {
-                    console.log(`\nResultados encontrados: ${resultado.length}`);
-                    console.log(`Resultados: ${JSON.stringify(resultado)}`); // transforma JSON em String
-
                     if (resultado.length == 1) {
                         console.log(resultado);
                         res.json(resultado[0]);

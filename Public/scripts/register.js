@@ -41,3 +41,28 @@ function mude(form){
         }
     }
 }
+
+async function register(){
+    const username = document.getElementById("iptUsername").value
+    const password = document.getElementById("iptPassword").value
+    const confirmPassword = document.getElementById("iptConfirmPassword").value
+
+    if(!username || !password || !confirmPassword || password != confirmPassword){
+        alert("Existem valores não congruentes")
+    }
+    else{
+        console.log("opa")
+        const res = await fetch("/user/register",{
+            method: "POST",
+            headers: {
+                "content-type": "application/json"
+            },
+            body: {
+                username: username,
+                password: password
+            }
+        })
+        const data = await res.json()
+        console.log(data)
+    }
+}

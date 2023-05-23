@@ -15,9 +15,9 @@ function login(email, senha) {
     return database.executar(instrucao);
 }
 
-function register(nome, email, senha) {
+function register(nome, senha) {
     var instrucao = `
-        INSERT INTO usuario (nome, email, senha) VALUES ('${nome}', '${email}', '${senha}');
+        INSERT INTO Cuber (nameCuber, passwordCuber) VALUES ('${nome}', '${senha}');
     `;
 
     return database.executar(instrucao);

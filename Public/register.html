@@ -6,23 +6,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <title>UniCube</title>
-    <link rel="shortcut icon" href="../assets/imgs/favicon.svg" type="image/x-icon">    
+    <link rel="shortcut icon" href="assets/imgs/favicon.svg" type="image/x-icon">    
 
-    <link rel="stylesheet" href="../styles/global.css">
-    <link rel="stylesheet" href="../styles/register.css">
+    <link rel="stylesheet" href="styles/global.css">
+    <link rel="stylesheet" href="styles/register.css">
 </head>
 <body>
     <div class="divRegister">
         <div class="divSpaceship">
-            <img src="../assets/imgs/spaceshipRegister.svg">
+            <img src="assets/imgs/spaceshipRegister.svg">
         </div>
         <div class="divForm">
             <div class="divRow top">
                 <a class="goBack" href="index.html">
-                    <img src="../assets/icons/arrowLeftWhite.png">
+                    <img src="assets/icons/arrowLeftWhite.png">
                     <p>Voltar</p>
                 </a>
-                <img class="logo" src="../assets/imgs/logo.svg" alt="unicube">
+                <img class="logo" src="assets/imgs/logo.svg" alt="unicube">
             </div>  
             <div class="divContRegister">
                 <div class="divLineOptions">
@@ -43,13 +43,13 @@
                         </div>
                         <div class="divInput">
                             <div class="divImgInput">
-                                <img src="../assets/icons/userLoginIcon.png" alt="">
+                                <img src="assets/icons/userLoginIcon.png" alt="">
                             </div>
                             <input type="text" placeholder="Nome">
                         </div>
                         <div class="divInput">
                             <div class="divImgInput">
-                                <img src="../assets/icons/passworIcon.png" alt="">
+                                <img src="assets/icons/passworIcon.png" alt="">
                             </div>
                             <input type="text" placeholder="Senha">
                         </div>
@@ -64,32 +64,31 @@
                         </div>
                         <div class="divInput">
                             <div class="divImgInput">
-                                <img src="../assets/icons/userLoginIcon.png" alt="">
+                                <img src="assets/icons/userLoginIcon.png" alt="">
                             </div>
-                            <input type="text" placeholder="Nome">
+                            <input type="text" placeholder="Nome" id="iptUsername">
                         </div>
                         <div class="divInput">
                             <div class="divImgInput">
-                                <img src="../assets/icons/passworIcon.png" alt="">
+                                <img src="assets/icons/passworIcon.png" alt="">
                             </div>
-                            <input type="text" placeholder="Senha">
+                            <input type="text" placeholder="Senha" id="iptPassaword">
                         </div>
                         <div class="divInput">
                             <div class="divImgInput">
-                                <img src="../assets/icons/passworIcon.png" alt="">
+                                <img src="assets/icons/passworIcon.png" alt="">
                             </div>
-                            <input type="text" placeholder="Confirmar Senha">
+                            <input type="text" placeholder="Confirmar Senha" id="iptConfirmPassaword">
                         </div>
                         <div class="divSign">
-                            <button class="signUp">Cadastrar</button>
+                            <button class="signUp" type="button" onclick="register()">Cadastrar</button>
                             <p class="doLogin">Já tem uma conta? Faça seu <button type="button" class="toLogin" onclick="mude(1)">Login!</button></p>
                         </div>
                     </form>
-                 
                 </div>
             </div>
         </div>
     </div>
-    <script src="../scripts/register.js"></script>
+    <script src="scripts/register.js"></script>
 </body>
 </html>
