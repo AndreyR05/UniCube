@@ -6,7 +6,7 @@ function infos(req, res) {
             if (resultado.length > 0) {
                 res.status(200).json(resultado);
             } else {
-                res.status(204).send("Nenhum resultado encontrado!")
+                res.status(204).json({msg: "Nenhum resultado encontrado!"})
             }
         }).catch(
             function (erro) {
@@ -18,29 +18,23 @@ function infos(req, res) {
 }
 
 function login(req, res) {
-    var username = req.body.username;
-    var password = req.body.password;
+    const username = req.body.username;
+    const password = req.body.password;
 
-    if (username || senha) {
-        res.status(400).send("Existe dados não preenchidos");
+    if (!username || !password) { 
+        res.status(400).json("Existe dados não preenchidos");
     } else {
-        
-        userModel.login(email, senha)
-            .then(
-                function (resultado) {
+        userModel.login(username, password)
+            .then(resultado => {
                     if (resultado.length == 1) {
-                        console.log(resultado);
-                        res.json(resultado[0]);
+                        res.status(200).json({msg: resultado[0]});
                     } else if (resultado.length == 0) {
                         res.status(403).send("Email e/ou senha inválido(s)");
-                    } else {
-                        res.status(403).send("Mais de um usuário com o mesmo login e senha!");
                     }
                 }
             ).catch(
                 function (erro) {
                     console.log(erro);
-                    console.log("\nHouve um erro ao realizar o login! Erro: ", erro.sqlMessage);
                     res.status(500).json(erro.sqlMessage);
                 }
             );

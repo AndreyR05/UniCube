@@ -7,17 +7,17 @@ function infos() {
     return database.executar(instrucao);
 }
 
-function login(email, senha) {
-    var instrucao = `
-        SELECT * FROM usuario WHERE email = '${email}' AND senha = '${senha}';
+function login(username, password) {
+    const instrucao = `
+        SELECT idCuber FROM Cuber WHERE nameCuber = '${username}' AND passwordCuber = '${password}';
     `;
 
     return database.executar(instrucao);
 }
 
-function register(nome, senha) {
-    var instrucao = `
-        INSERT INTO Cuber (nameCuber, passwordCuber) VALUES ('${nome}', '${senha}');
+function register(username, password) {
+    const instrucao = `
+        INSERT INTO Cuber (nameCuber, passwordCuber) VALUES ('${username}', '${password}');
     `;
 
     return database.executar(instrucao);

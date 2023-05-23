@@ -76,3 +76,32 @@ function register(){
         })
     }
 }
+function login(){
+    const username = document.getElementById("iptUsernameLogin")
+    const password = document.getElementById("iptPasswordLogin")
+
+    if(!username.value || !password.value){
+        alert("Existem valores não congruentes")
+    }
+    else{
+        fetch("/user/login",{
+            method: "POST",
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                username: username.value,
+                password: password.value
+            })
+        })
+        .then(res => {
+            if(res.status == 200){
+                window.location.href = "/profile.html"
+            } else if(res.status == 403){
+                alert("usuário ou senha errada")
+            } else{
+                alert("Erro")
+            }
+        })
+    }
+}
