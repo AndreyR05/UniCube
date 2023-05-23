@@ -42,27 +42,37 @@ function mude(form){
     }
 }
 
-async function register(){
-    const username = document.getElementById("iptUsername").value
-    const password = document.getElementById("iptPassword").value
-    const confirmPassword = document.getElementById("iptConfirmPassword").value
+function register(){
+    const username = document.getElementById("iptUsername")
+    const password = document.getElementById("iptPassword")
+    const confirmPassword = document.getElementById("iptConfirmPassword")
 
-    if(!username || !password || !confirmPassword || password != confirmPassword){
+    if(!username.value || !password.value || !confirmPassword.value || password.value != confirmPassword.value){
         alert("Existem valores não congruentes")
     }
     else{
         console.log("opa")
-        const res = await fetch("/user/register",{
+        fetch("/user/register",{
             method: "POST",
             headers: {
-                "content-type": "application/json"
+                'Content-Type': 'application/json'
             },
-            body: {
-                username: username,
-                password: password
+            body: JSON.stringify({
+                username: username.value,
+                password: password.value
+            })
+        })
+        .then(res => {
+            if(res.status == 200){
+                mude(1)
+                username.value = ""
+                password.value = ""
+                confirmPassword.value = ""
+            } else if(res.status == 403){
+                alert("O nome já esta em uso")
+            } else {
+                alert("Erro")
             }
         })
-        const data = await res.json()
-        console.log(data)
     }
 }

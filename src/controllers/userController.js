@@ -49,33 +49,32 @@ function login(req, res) {
 }
 
 function register(req, res) {
-    var nome = req.body.nomeServer;
-    var email = req.body.emailServer;
-    var senha = req.body.senhaServer;
+    const { username, password } = req.body
 
-    if (nome == undefined) {
-        res.status(400).send("Seu nome está undefined!");
-    } else if (email == undefined) {
-        res.status(400).send("Seu email está undefined!");
-    } else if (senha == undefined) {
-        res.status(400).send("Sua senha está undefined!");
+    if (!username || !password) {
+        res.status(400).json({msg: "Existem informações não preenchidas!"});
     } else {
-        
-        userModel.register(nome, email, senha)
-            .then(
-                function (resultado) {
-                    res.json(resultado);
+        userModel.findByName(username)
+        .then((users) => {
+            if(users.length == 0){
+                userModel.register(username, password)
+                .then((resultado) => res.status(200).json(resultado))
+                .catch(
+                    function (erro) {
+                        console.log(erro);
+                        console.log(
+                            "\nHouve um erro ao realizar o cadastro! Erro: ",
+                            erro.sqlMessage
+                        );
+                        res.status(500).json(erro.sqlMessage);
+                    }
+                )
                 }
-            ).catch(
-                function (erro) {
-                    console.log(erro);
-                    console.log(
-                        "\nHouve um erro ao realizar o cadastro! Erro: ",
-                        erro.sqlMessage
-                    );
-                    res.status(500).json(erro.sqlMessage);
+                else{
+                    res.status(403).json({msg: "O nome desejado ja esta em uso"})
                 }
-            );
+            }
+        )
     }
 }
 
