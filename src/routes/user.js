@@ -3,7 +3,7 @@ var router = express.Router();
 
 var userController = require("../controllers/userController");
 
-router.get("/:idUser", function (req, res) {
+router.get("/:idCuber", function (req, res) {
     userController.infos(req, res);
 });
 

@@ -7,9 +7,31 @@ function findByName(username){
     return database.executar(instrucao)
 }
 
-function infos() {
-    var instrucao = `
-        SELECT * FROM usuario;
+function infos(idCuber) {
+    const instrucao = `
+        SELECT 
+        nameCuber,
+        imageUrl,
+        (
+            SELECT 
+                count(*)
+            FROM Followers f
+            WHERE f.fkCuber = c.idCuber
+        ) "followersCuber",
+        (
+            SELECT 
+                count(*)
+            FROM Followers f
+            WHERE f.fkFollower = c.idCuber
+        ) "followingCuber",
+        (
+            SELECT
+                count(*)
+            FROM Publication p
+            WHERE p.fkCuber = c.idCuber
+        ) "publicationsCuber"
+        FROM Cuber c
+        WHERE c.idCuber = ${idCuber}; 
     `;
     return database.executar(instrucao);
 }

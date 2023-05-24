@@ -1,17 +1,17 @@
 const userModel = require("../models/userModel");
 
 function infos(req, res) {
-    userModel.infos()
+    const { idCuber } = req.params
+    userModel.infos(idCuber)
         .then(function (resultado) {
-            if (resultado.length > 0) {
-                res.status(200).json(resultado);
+            if (resultado.length) {
+                res.status(200).json(resultado[0]);
             } else {
-                res.status(204).json({msg: "Nenhum resultado encontrado!"})
+                res.status(404).json({msg: "Nenhum resultado encontrado!"})
             }
         }).catch(
             function (erro) {
                 console.log(erro);
-                console.log("Houve um erro ao realizar a consulta! Erro: ", erro.sqlMessage);
                 res.status(500).json(erro.sqlMessage);
             }
         );
