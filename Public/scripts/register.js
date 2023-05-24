@@ -94,8 +94,10 @@ function login(){
                 password: password.value
             })
         })
-        .then(res => {
+        .then(async res => {
+            const id = (await res.json()).msg.idCuber
             if(res.status == 200){
+                localStorage.idCuber = id
                 window.location.href = "/profile.html"
             } else if(res.status == 403){
                 alert("usuário ou senha errada")
@@ -103,5 +105,6 @@ function login(){
                 alert("Erro")
             }
         })
+        
     }
 }
