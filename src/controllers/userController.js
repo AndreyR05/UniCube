@@ -63,10 +63,10 @@ function register(req, res) {
                         res.status(500).json(erro.sqlMessage);
                     }
                 )
-                }
-                else{
-                    res.status(403).json({msg: "O nome desejado ja esta em uso"})
-                }
+            }
+            else{
+                res.status(403).json({msg: "O nome desejado ja esta em uso"})
+            }
             }
         )
     }

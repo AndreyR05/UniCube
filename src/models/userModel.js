@@ -1,5 +1,12 @@
 var database = require("../database/config")
 
+function findByName(username){
+    const instrucao = `
+        SELECT idCuber FROM Cuber WHERE nameCuber = '${username}'
+    `
+    return database.executar(instrucao)
+}
+
 function infos() {
     var instrucao = `
         SELECT * FROM usuario;
@@ -26,5 +33,6 @@ function register(username, password) {
 module.exports = {
     infos,
     login,
-    register
+    register,
+    findByName,
 };
