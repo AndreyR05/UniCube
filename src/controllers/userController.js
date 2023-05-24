@@ -3,9 +3,15 @@ const userModel = require("../models/userModel");
 function infos(req, res) {
     const { idCuber } = req.params
     userModel.infos(idCuber)
-        .then(function (resultado) {
+        .then(resultado => {
             if (resultado.length) {
-                res.status(200).json(resultado[0]);
+                userModel.publications(idCuber)
+                .then((publications) => {
+                        res.status(200).json({
+                            ...resultado[0],
+                            publications: publications
+                        });
+                })
             } else {
                 res.status(404).json({msg: "Nenhum resultado encontrado!"})
             }

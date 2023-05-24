@@ -36,6 +36,22 @@ function infos(idCuber) {
     return database.executar(instrucao);
 }
 
+function publications(idCuber){
+    const instrucao = `
+        SELECT
+        *, 
+        (
+            SELECT 
+                count(*) 
+            FROM Likes l 
+            WHERE l.fkPublication = p.idPublication
+        ) "likes"
+        FROM Publication p
+        WHERE fkCuber = ${idCuber}; 
+    `;
+    return database.executar(instrucao);
+}
+
 function login(username, password) {
     const instrucao = `
         SELECT idCuber FROM Cuber WHERE nameCuber = '${username}' AND passwordCuber = '${password}';
@@ -57,4 +73,5 @@ module.exports = {
     login,
     register,
     findByName,
+    publications
 };
