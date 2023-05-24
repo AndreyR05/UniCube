@@ -21,18 +21,19 @@ window.onload = async() => {
         following.innerHTML = user.followingCuber
         publication.innerHTML = user.publicationsCuber
 
-        const rows = user.publications.length / 4
+        const rows = user.publications.length / 5
         for(let i = 0; i < rows; i++){
-            let numCards = 4
-            if(i == rows-1){
-                numCards = 4 * rows
+            let numCards = 5
+            if(i >= rows-1){
+                numCards = 5 * (user.publications.length % 5) - rows*5 
             }
 
             const divRow = document.createElement("div")
             divRow.classList.add("divRowCards")
 
-            for(let j = 0; j < user.publications.length; j++){
-                const card = `
+            console.log(numCards)
+            for(let j = 0; j < numCards; j++){
+                divRow.innerHTML += `
                     <div class="divCard">
                         <img class="imgCover" src="../assets/imgs/octahedron.png">
                         <div class="divContentCard">
@@ -51,8 +52,6 @@ window.onload = async() => {
                         </div>
                     </div>
                 `
-
-                divRow.innerHTML += card
             }
             divPublications.appendChild(divRow)
         }
