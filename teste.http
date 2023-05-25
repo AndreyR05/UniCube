@@ -1,0 +1,7 @@
+POST http://localhost:3333/publication/create/4
+Content-type: application/json
+
+{
+    "title": "Olha que legal esse legal",
+    "desc": "Esse cubo é muito raro muito raro mesmo"
+}
