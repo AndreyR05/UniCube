@@ -25,23 +25,22 @@ window.onload = async() => {
         for(let i = 0; i < rows; i++){
             let numCards = 5
             if(i >= rows-1){
-                numCards = 5 * (user.publications.length % 5) - rows*5 
+                numCards = user.publications.length % 5 ? user.publications.length % 5 : 5
             }
 
             const divRow = document.createElement("div")
             divRow.classList.add("divRowCards")
 
-            console.log(numCards)
             for(let j = 0; j < numCards; j++){
                 divRow.innerHTML += `
                     <div class="divCard">
                         <img class="imgCover" src="../assets/imgs/octahedron.png">
                         <div class="divContentCard">
-                            <p class="txtTitleContent">${user.publications[(i+1)*j].titlePublication}</p>
+                            <p class="txtTitleContent">${user.publications[i*5+j].titlePublication}</p>
                             <div class="divRowData">
                                 <div class="divPostLikes">
                                     <img src="../assets/icons/hearthIconOutline.png">
-                                    <p>${user.publications[(i+1)*j].likes}</p>
+                                    <p>${user.publications[i*5+j].likes}</p>
                                 </div>
 
                                 <button class="btnPostEdit">
