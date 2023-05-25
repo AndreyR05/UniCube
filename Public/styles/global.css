@@ -7,7 +7,7 @@
     box-sizing: border-box;
 }
 
-p, a, button, input{
+p, a, button, input, textarea{
     font-family: Open Sans;
 }
 

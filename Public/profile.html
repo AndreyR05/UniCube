@@ -15,6 +15,24 @@
 </head>
 </head>
 <body>
+    <div class="divBackgroundModal" id="modal">
+        <div class="divModal">
+            <div class="iptImg">
+                <img src="assets/icons/downloadIcon.png">
+            </div>
+            <input type="file">
+            <input class="iptForm" placeholder="Titulo">
+            <textarea class="iptDesc" placeholder="Descrição"></textarea>
+            <div class="divRowModal">
+                <button class="btnCancel" onclick="closeModal()">
+                    Cancelar
+                </button>
+                <button class="btnSend">
+                    Enviar
+                </button>
+            </div>
+        </div>
+    </div>
     <div class="divNavbar divNavbarBackground">
         <img src="../assets/imgs/logo.svg" alt="Logo UniCube" class="imgNavbar">
         <div class="divOptions">
@@ -80,7 +98,7 @@
                     </div>
                 </div>
 
-                <button class="btnNewPost">
+                <button class="btnNewPost" onclick="showModal()">
                     Criar
                 </button>
             </div>
