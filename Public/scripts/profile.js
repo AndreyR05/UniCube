@@ -83,7 +83,7 @@ async function renderUser(idCuber){
                                 <p>${user.publications[i*5+j].likes}</p>
                             </div>
 
-                            <button class="btnPostEdit">
+                            <button class="btnPostEdit" onclick="showEdit(${i*5+j})">
                                 <img src="../assets/icons/updateIcon.png">
                                 <p>Editar</p>
                             </button>
@@ -94,4 +94,46 @@ async function renderUser(idCuber){
         }
         divPublications.appendChild(divRow)
     }
+}
+
+function showEdit(indexPublication){
+    const title = document.getElementById("iptTitleUpdate")
+    const desc = document.getElementById("iptDescUpdate")
+
+    const modal = document.getElementById("modalUpdate")
+    const publication = user.publications[indexPublication]
+
+    title.value = publication.titlePublication
+    desc.value = publication.contentPublication
+    modal.style.display = "flex"
+}
+
+function updatePublication(){
+    const idCuber = localStorage.idCuber
+
+    const title = document.getElementById("iptTitleUpdate")
+    const desc = document.getElementById("iptDescUpdate")
+
+    const modal = document.getElementById("modalUpdate")
+    const publication = user.publications[indexPublication]
+
+    title.value = publication.titlePublication
+    desc.value = publication.contentPublication
+
+    fetch(`/publication/update/${publication.idPublication}`,{
+        method: 'PUT',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            title: title.value,
+            desc: desc.value
+        })
+    })
+    .then(() => {
+        title.value = ""
+        desc.value = ""
+        renderUser(idCuber)
+        // closeModal()
+    })
 }

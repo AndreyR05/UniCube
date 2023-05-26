@@ -15,7 +15,7 @@
 </head>
 </head>
 <body>
-    <div class="divBackgroundModal" id="modal">
+    <div class="divBackgroundModal" id="modalCreate">
         <div class="divModal">
             <div class="iptImg">
                 <img src="assets/icons/downloadIcon.png">
@@ -29,6 +29,24 @@
                 </button>
                 <button class="btnSend" onclick="createPublication()">
                     Enviar
+                </button>
+            </div>
+        </div>
+    </div>
+    <div class="divBackgroundModal" id="modalUpdate">
+        <div class="divModal">
+            <div class="iptImg">
+                <img src="assets/icons/downloadIcon.png">
+            </div>
+            <input type="file">
+            <input class="iptForm" placeholder="Titulo" id="iptTitleUpdate">
+            <textarea class="iptDesc" placeholder="Descrição" id="iptDescUpdate"></textarea>
+            <div class="divRowModal">
+                <button class="btnCancel" onclick="closeModal()">
+                    Cancelar
+                </button>
+                <button class="btnSend" onclick="updatePublication()">
+                    Atualizar
                 </button>
             </div>
         </div>
