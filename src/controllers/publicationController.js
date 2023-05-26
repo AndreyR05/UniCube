@@ -11,7 +11,17 @@ function create(req, res){
             res.status(200).json({msg: "Publicação criada com sucesso"})
         })
 }
+function update(req, res){
+    const idPublication = req.params.idPublication
+    const { title, desc } = req.body
+
+    publicationModel.update(title, desc, idPublication)
+        .then(response => {
+            res.status(200).json({msg: "Publicação atualiazada com sucesso"})
+        })
+}
 
 module.exports = {
-    create
+    create,
+    update
 }

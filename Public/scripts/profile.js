@@ -12,11 +12,11 @@ window.onload = () => {
 }
 
 function showModal(){
-    const modal = document.getElementById("modal")
+    const modal = document.getElementById("modalCreate")
     modal.style.display = "flex"
 }
 function closeModal(){
-    const modal = document.getElementById("modal")
+    const modal = document.getElementById("modalCreate")
     modal.style.display = "none"
 }
 
@@ -99,16 +99,23 @@ async function renderUser(idCuber){
 function showEdit(indexPublication){
     const title = document.getElementById("iptTitleUpdate")
     const desc = document.getElementById("iptDescUpdate")
+    const btnUpdate = document.getElementById("btnUpdate")
 
     const modal = document.getElementById("modalUpdate")
     const publication = user.publications[indexPublication]
 
     title.value = publication.titlePublication
     desc.value = publication.contentPublication
+    btnUpdate.onclick = () => updatePublication(indexPublication)
+
     modal.style.display = "flex"
 }
+function closeEdit(){
+    const modal = document.getElementById("modalUpdate")
+    modal.style.display = 'none'
+}
 
-function updatePublication(){
+function updatePublication(indexPublication){
     const idCuber = localStorage.idCuber
 
     const title = document.getElementById("iptTitleUpdate")
@@ -116,9 +123,6 @@ function updatePublication(){
 
     const modal = document.getElementById("modalUpdate")
     const publication = user.publications[indexPublication]
-
-    title.value = publication.titlePublication
-    desc.value = publication.contentPublication
 
     fetch(`/publication/update/${publication.idPublication}`,{
         method: 'PUT',
@@ -130,10 +134,11 @@ function updatePublication(){
             desc: desc.value
         })
     })
-    .then(() => {
+    .then(async (res) => {
+        const json = await res.json()
         title.value = ""
         desc.value = ""
         renderUser(idCuber)
-        // closeModal()
+        closeEdit()
     })
 }

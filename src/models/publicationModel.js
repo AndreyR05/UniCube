@@ -11,6 +11,21 @@ function create(title, titlePublication, idCuber){
     return database.executar(sql)
 }
 
+function update(title, content, idPublication){
+    const sql = `
+        UPDATE 
+            Publication 
+        SET
+            titlePublication = '${title}',
+            contentPublication = '${content}'
+        WHERE
+            idPublication = ${idPublication};
+    `
+    
+    return database.executar(sql)
+}
+
 module.exports = {
-    create
+    create,
+    update
 }
