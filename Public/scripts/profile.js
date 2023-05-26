@@ -7,6 +7,8 @@ window.onload = () => {
         window.location.href = "/register.html"
     }
     else{
+        const userImg = document.getElementById("divUserImg")
+        userImg.href = "profile.html"
         renderUser(idCuber)
     }
 }
