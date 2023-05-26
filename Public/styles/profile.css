@@ -323,7 +323,12 @@ input[type="file"]{
     border: 2px solid #DC2626;
     background: none;
 }
+.divRowModal > .btnTrash{
+    width: 50px;
+    background: #DC2626;
+}
 .btnSend{
+    color: #262626;
     border: 2px solid #EAB308;
     background: #FACC15;
 }

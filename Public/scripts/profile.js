@@ -100,6 +100,7 @@ function showEdit(indexPublication){
     const title = document.getElementById("iptTitleUpdate")
     const desc = document.getElementById("iptDescUpdate")
     const btnUpdate = document.getElementById("btnUpdate")
+    const btnDelete = document.getElementById("btnDelete")
 
     const modal = document.getElementById("modalUpdate")
     const publication = user.publications[indexPublication]
@@ -107,6 +108,7 @@ function showEdit(indexPublication){
     title.value = publication.titlePublication
     desc.value = publication.contentPublication
     btnUpdate.onclick = () => updatePublication(indexPublication)
+    btnDelete.onclick = () => deletePublication(indexPublication)
 
     modal.style.display = "flex"
 }
@@ -121,7 +123,6 @@ function updatePublication(indexPublication){
     const title = document.getElementById("iptTitleUpdate")
     const desc = document.getElementById("iptDescUpdate")
 
-    const modal = document.getElementById("modalUpdate")
     const publication = user.publications[indexPublication]
 
     fetch(`/publication/update/${publication.idPublication}`,{
@@ -134,11 +135,22 @@ function updatePublication(indexPublication){
             desc: desc.value
         })
     })
-    .then(async (res) => {
-        const json = await res.json()
+    .then((res) => {
         title.value = ""
         desc.value = ""
         renderUser(idCuber)
         closeEdit()
     })
+}
+function deletePublication(indexPublication){
+    const { idCuber } = localStorage
+    const publication = user.publications[indexPublication]
+
+    fetch(`/publication/delete/${publication.idPublication}`,{
+        method: 'DELETE'
+    })
+    .then((res) => {
+        renderUser(idCuber)
+        closeEdit()
+    })   
 }

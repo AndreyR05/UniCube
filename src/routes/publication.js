@@ -9,5 +9,8 @@ router.post("/create/:idCuber",(req, res) => {
 router.put("/update/:idPublication", (req, res) => {
     publicationController.update(req, res)
 })
+router.delete("/delete/:idPublication", (req, res) => {
+    publicationController.deletePublication(req, res)
+})
 
 module.exports = router

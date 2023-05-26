@@ -20,8 +20,17 @@ function update(req, res){
             res.status(200).json({msg: "Publicação atualiazada com sucesso"})
         })
 }
+function deletePublication(req, res){
+    const { idPublication } = req.params
+
+    publicationModel.deletePublication(idPublication)
+        .then(() => {
+            res.status(200).json({msg: "deletado com sucesso"})
+        })
+}
 
 module.exports = {
     create,
-    update
+    update,
+    deletePublication
 }

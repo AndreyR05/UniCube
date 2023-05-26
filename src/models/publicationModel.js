@@ -25,7 +25,15 @@ function update(title, content, idPublication){
     return database.executar(sql)
 }
 
+function deletePublication(idPublication){
+    const sql = `
+        DELETE FROM Publication WHERE idPublication = ${idPublication}
+    `
+    return database.executar(sql)
+}
+
 module.exports = {
     create,
-    update
+    update,
+    deletePublication
 }
