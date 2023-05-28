@@ -32,8 +32,31 @@ function deletePublication(idPublication){
     return database.executar(sql)
 }
 
+function listPublication(idCuber){
+    const sql = `
+        SELECT
+            c.nameCuber,
+            c.imageUrl,
+            p.*,
+            CASE WHEN EXISTS (SELECT * FROM likes l WHERE l.fkCuber = ${idCuber} and l.fkPublication = p.idPublication)
+                THEN true
+                ELSE false
+            END "liked",
+            (
+                SELECT COUNT(*) FROM likes l WHERE l.fkPublication = p.idPublication
+            ) "likes"
+        FROM Publication p
+        JOIN Cuber c ON c.idCuber = p.fkCuber
+        WHERE p.fkCuber != ${idCuber}
+        ORDER BY p.idPublication 
+        DESC;
+    `
+    return database.executar(sql)
+}
+
 module.exports = {
     create,
     update,
-    deletePublication
+    deletePublication,
+    listPublication
 }

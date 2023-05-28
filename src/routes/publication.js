@@ -12,5 +12,8 @@ router.put("/update/:idPublication", (req, res) => {
 router.delete("/delete/:idPublication", (req, res) => {
     publicationController.deletePublication(req, res)
 })
+router.get("/explore/:idPublication", (req, res) => {
+    publicationController.listPublication(req, res)
+})
 
 module.exports = router

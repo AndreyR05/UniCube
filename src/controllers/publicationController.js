@@ -28,9 +28,18 @@ function deletePublication(req, res){
             res.status(200).json({msg: "deletado com sucesso"})
         })
 }
+function listPublication(req, res){
+    const { idPublication } = req.params
+
+    publicationModel.listPublication(idPublication)
+        .then(response => {
+            res.status(200).json({publications: response})
+        })
+}
 
 module.exports = {
     create,
     update,
-    deletePublication
+    deletePublication,
+    listPublication
 }
