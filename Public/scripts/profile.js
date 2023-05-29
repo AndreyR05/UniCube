@@ -94,6 +94,9 @@ async function renderUser(idCuber){
 
                 divRow.innerHTML += `
                     <div class="divCollectionContentItems">
+                        <button class="btnEdit" onclick="showEditCube()">
+                            <img src="assets/icons/dotsIcon.png">
+                        </button>
                         <img src="assets/imgs/octahedron.png" alt="">
                         <div class="itemInfo">
                             <p class="txtNameItem">${user.cubes[i*4+j].nameCube}</p>
@@ -114,6 +117,15 @@ async function renderUser(idCuber){
         }
         divCubes.appendChild(divRow)
     }
+}
+function showEditCube(){
+    const modal = document.getElementById("modalEditCube")
+    modal.style.display = "flex"
+}
+
+function closeEditCube(){
+    const modal = document.getElementById("modalEditCube")
+    modal.style.display = "none"
 }
 
 function showModalCube(){

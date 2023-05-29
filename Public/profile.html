@@ -53,6 +53,29 @@
             </div>
         </div>
     </div>
+    <div class="divBackgroundModal" id="modalEditCube">
+        <div class="divModal">
+            <div class="iptImg">
+                <img src="assets/icons/downloadIcon.png">
+            </div>
+            <input type="file">
+            <div class="divRowForm">
+                <input class="iptForm" placeholder="Nome" id="iptName">
+                <input class="iptForm" placeholder="Raridade" id="iptRarity">
+            </div>
+            <div class="divRowModal">
+                <button class="btnCancel" onclick="closeEditCube()">
+                    Cancelar
+                </button>
+                <button class="btnTrash" id="btnDelete">
+                    <img src="assets/icons/trashIcon.png" alt="">
+                </button>
+                <button class="btnSend" onclick="editCube()">
+                    Novo
+                </button>
+            </div>
+        </div>
+    </div>
     <div class="divBackgroundModal" id="modalUpdate">
         <div class="divModal">
             <div class="iptImg">
