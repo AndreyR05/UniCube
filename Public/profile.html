@@ -33,6 +33,26 @@
             </div>
         </div>
     </div>
+    <div class="divBackgroundModal" style="display: flex;" id="modalAddCube">
+        <div class="divModal">
+            <div class="iptImg">
+                <img src="assets/icons/downloadIcon.png">
+            </div>
+            <input type="file">
+            <div class="divRowForm">
+                <input class="iptForm" placeholder="Nome" id="iptTitle">
+                <input class="iptForm" placholder="Raridade" id="iptRarity">
+            </div>
+            <div class="divRowModal">
+                <button class="btnCancel" onclick="closeModal()">
+                    Cancelar
+                </button>
+                <button class="btnSend" onclick="createPublication()">
+                    Enviar
+                </button>
+            </div>
+        </div>
+    </div>
     <div class="divBackgroundModal" id="modalUpdate">
         <div class="divModal">
             <div class="iptImg">

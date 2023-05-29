@@ -50,6 +50,11 @@ body{
     width: 100% ;
     justify-content: space-between
 }
+.divRowForm{
+    display: flex;
+    justify-content: space-between;
+    gap: 20px
+}
 .divNumberUser{
     display: flex;
     flex-direction: column;
@@ -332,6 +337,7 @@ body{
 .iptForm{
     border: 2px solid #F0F0F0;
     height: 50px;
+    width: 100%;
     background: none;
     border-radius: 5px;
     padding: 10px;
