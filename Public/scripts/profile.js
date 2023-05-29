@@ -25,6 +25,7 @@ async function renderUser(idCuber){
 
     divPublications.innerHTML = ""
     divCubes.innerHTML = ""
+    itemsUser.innerHTML = ""
 
     const res = await fetch(`/user/${idCuber}`)
     user = await res.json()
