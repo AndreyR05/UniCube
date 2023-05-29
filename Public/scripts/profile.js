@@ -76,7 +76,6 @@ async function renderUser(idCuber){
         divRow.classList.add("divRowCards")
 
         for(let j = 0; j < numCards; j++){
-            console.log(i*4+j, user.cubes.length+1, numCards)
             if(i*4+j != user.cubes.length){
                 const rarity = 
                     user.cubes[i*4+j].rarity == "Muito Raro" ? 4
@@ -126,7 +125,6 @@ function createCube(){
         alert("Campos não preenchidos")
     }
     else{
-        console.log(idCuber)
         fetch(`/cubes/create/${idCuber}`,{
             method: "POST",
             headers: {
@@ -143,6 +141,7 @@ function createCube(){
                 rarity.value = ""
                 renderUser(idCuber)
                 closeModalCube()
+                changeScreen(1)
             }
         })
     }
