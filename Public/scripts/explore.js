@@ -3,12 +3,15 @@ let exploreSection = 0
 window.onload = () => {
     const { idCuber } = localStorage
 
-    if(idCuber)
+    if(idCuber){
+        const userImg = document.getElementById("divUserImg")
+        userImg.href = "profile.html"
         fetch(`/publication/explore/${idCuber}`)
         .then(async res => {
             const { publications } = await res.json()
             loadPublications(publications)
         })
+    }
 }
 
 function loadPublications(publications){
