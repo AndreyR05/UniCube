@@ -3,15 +3,15 @@ const userModel = require("../models/userModel");
 function infos(req, res) {
     const { idCuber } = req.params
     userModel.infos(idCuber)
-        .then(resultado => {
+        .then(async resultado => {
             if (resultado.length) {
-                userModel.publications(idCuber)
-                .then((publications) => {
-                        res.status(200).json({
-                            ...resultado[0],
-                            publications: publications
-                        });
-                })
+                const publications = await userModel.publications(idCuber)
+                const cubes = await userModel.cubes(idCuber)
+                res.status(200).json({
+                    ...resultado[0],
+                    publications: publications,
+                    cubes: cubes
+                });
             } else {
                 res.status(404).json({msg: "Nenhum resultado encontrado!"})
             }

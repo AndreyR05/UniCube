@@ -36,6 +36,14 @@ function infos(idCuber) {
     return database.executar(instrucao);
 }
 
+function cubes(idCuber){
+    const sql = `
+        SELECT *
+        FROM CubeCollection
+        WHERE fkCuber = 2
+    `
+    return database.executar(sql)
+}
 function publications(idCuber){
     const instrucao = `
         SELECT
@@ -73,5 +81,6 @@ module.exports = {
     login,
     register,
     findByName,
-    publications
+    publications,
+    cubes
 };
