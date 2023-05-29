@@ -36,10 +36,19 @@ function listPublication(req, res){
             res.status(200).json({publications: response})
         })
 }
+function addLike(req,res){
+    const { idPublication, idCuber } = req.body
+
+    publicationModel.addLike(idPublication, idCuber)
+        .then(() => {
+            res.status(200).json({msg: "curtido com sucesso"})
+        })
+}
 
 module.exports = {
     create,
     update,
     deletePublication,
-    listPublication
+    listPublication,
+    addLike
 }

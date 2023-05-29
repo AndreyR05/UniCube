@@ -54,9 +54,18 @@ function listPublication(idCuber){
     return database.executar(sql)
 }
 
+function addLike(idPublication, idCuber){
+    const sql = `
+        INSERT INTO Likes VALUES
+        (${idCuber}, ${idPublication}, DATE(NOW()));
+    `
+    return database.executar(sql)
+}
+
 module.exports = {
     create,
     update,
     deletePublication,
-    listPublication
+    listPublication,
+    addLike
 }

@@ -1,4 +1,5 @@
 let exploreSection = 0
+let publications = []
 
 window.onload = () => {
     const { idCuber } = localStorage
@@ -8,8 +9,9 @@ window.onload = () => {
         userImg.href = "profile.html"
         fetch(`/publication/explore/${idCuber}`)
         .then(async res => {
-            const { publications } = await res.json()
-            loadPublications(publications)
+            const publicationsJson = (await res.json()).publications
+            publications = publicationsJson
+            loadPublications(publicationsJson)
         })
     }
 }
@@ -34,9 +36,9 @@ function loadPublications(publications){
                             </div>
                             <p>${publications[i*3+j].nameCuber}</p>
                         </div>
-                        <button class="btnLike">
-                            <p>${publications[i*3+j].likes}</p>
-                            <img src="${publications[i*3+j].liked ? "../assets/icons/hearthIconFill.png" : "../assets/icons/hearthIconOutline.png"}">
+                        <button class="btnLike" onclick="handleLikes(${i*3+j})">
+                            <p id="likesCount${i*3+j}">${publications[i*3+j].likes}</p>
+                            <img id="heart${i*3+j}" src="${publications[i*3+j].liked ? "../assets/icons/heartIconFill.png" : "../assets/icons/heartIconOutline.png"}">
                         </button>
                     </div>
                     <img class="imgCover" src="../assets/imgs/octahedron.png">
@@ -48,6 +50,49 @@ function loadPublications(publications){
             `
         }
         content.appendChild(divRow)
+    }
+}
+
+function handleLikes(indexPublication){
+    const { idCuber } = localStorage
+    const publication = publications[indexPublication]
+
+    if(publication.liked){
+        fetch(`/publication/like`,{
+            method: "POST",
+            headers: {
+                "Content-Type": 'application/json'
+            },
+            body: JSON.stringify({
+                idPublication: publication.idPublication,
+                idCuber: idCuber
+            })
+        })
+        .then(() => {
+            const heart = document.getElementById(`heart${indexPublication}`)
+            const likes = document.getElementById(`likesCount${indexPublication}`)
+            heart.src = "../assets/icons/heartIconOutline.png"
+            publication.likes--
+            likes.innerHTML = publication.likes
+        })
+    } else {
+        fetch(`/publication/like`,{
+            method: "POST",
+            headers: {
+                "Content-Type": 'application/json'
+            },
+            body: JSON.stringify({
+                idPublication: publication.idPublication,
+                idCuber: idCuber
+            })
+        })
+        .then(() => {
+            const heart = document.getElementById(`heart${indexPublication}`)
+            const likes = document.getElementById(`likesCount${indexPublication}`)
+            heart.src = "../assets/icons/heartIconFill.png"
+            publication.likes++
+            likes.innerHTML = publication.likes 
+        })
     }
 }
 
