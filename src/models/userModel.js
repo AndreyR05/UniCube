@@ -29,7 +29,13 @@ function infos(idCuber) {
                 count(*)
             FROM Publication p
             WHERE p.fkCuber = c.idCuber
-        ) "publicationsCuber"
+        ) "publicationsCuber",
+        (
+            SELECT 
+                count(*)
+            FROM CubeCollection cc 
+            WHERE cc.fkCuber = c.idCuber
+        ) "cubesCuber"
         FROM Cuber c
         WHERE c.idCuber = ${idCuber}; 
     `;

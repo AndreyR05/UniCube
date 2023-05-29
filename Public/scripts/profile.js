@@ -18,6 +18,8 @@ async function renderUser(idCuber){
     const followers = document.getElementById("qtdFollowers")
     const following = document.getElementById("qtdFollowing")
     const publication = document.getElementById("qtdPublications")
+    const countItems = document.getElementById("txtCountItems")
+    const itemsUser = document.getElementById("divItemsCollection")
     const divPublications = document.getElementById("divPublications")
     const divCubes = document.getElementById("divCubes")
 
@@ -31,6 +33,12 @@ async function renderUser(idCuber){
     followers.innerHTML = user.followersCuber
     following.innerHTML = user.followingCuber
     publication.innerHTML = user.publicationsCuber
+    countItems.innerHTML = user.cubesCuber
+    for(let i = 0; i < 3; i++){
+        itemsUser.innerHTML +=`<div class="divCollectionItem">
+            <img src="../assets/imgs/octahedron.png" alt="">
+        </div>`
+    }
 
     const rows = user.publications.length / 5
     for(let i = 0; i < rows; i++){
