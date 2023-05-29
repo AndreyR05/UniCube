@@ -18,5 +18,8 @@ router.get("/explore/:idPublication", (req, res) => {
 router.post("/like", (req, res) => {
     publicationController.addLike(req, res)
 })
+router.delete("/dislike",(req, res) => {
+    publicationController.removeLike(req, res)
+})
 
 module.exports = router

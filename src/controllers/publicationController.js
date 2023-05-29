@@ -44,11 +44,20 @@ function addLike(req,res){
             res.status(200).json({msg: "curtido com sucesso"})
         })
 }
+function removeLike(req,res){
+    const { idPublication, idCuber } = req.body
+
+    publicationModel.removeLike(idPublication, idCuber)
+        .then(() => {
+            res.status(200).json({msg: "curtido com sucesso"})
+        })
+}
 
 module.exports = {
     create,
     update,
     deletePublication,
     listPublication,
-    addLike
+    addLike,
+    removeLike
 }

@@ -61,11 +61,18 @@ function addLike(idPublication, idCuber){
     `
     return database.executar(sql)
 }
+function removeLike(idPublication, idCuber){
+    const sql = `
+        DELETE FROM Likes WHERE fkCuber = ${idCuber} and fkPublication = ${idPublication};
+    `
+    return database.executar(sql)
+}
 
 module.exports = {
     create,
     update,
     deletePublication,
     listPublication,
-    addLike
+    addLike,
+    removeLike
 }

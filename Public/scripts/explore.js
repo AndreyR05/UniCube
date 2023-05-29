@@ -37,7 +37,7 @@ function loadPublications(publications){
                             <p>${publications[i*3+j].nameCuber}</p>
                         </div>
                         <button class="btnLike" onclick="handleLikes(${i*3+j})">
-                            <p id="likesCount${i*3+j}">${publications[i*3+j].likes}</p>
+                            <p id="likesCount${i*3+j}" class="txtLike">${publications[i*3+j].likes}</p>
                             <img id="heart${i*3+j}" src="${publications[i*3+j].liked ? "../assets/icons/heartIconFill.png" : "../assets/icons/heartIconOutline.png"}">
                         </button>
                     </div>
@@ -58,8 +58,8 @@ function handleLikes(indexPublication){
     const publication = publications[indexPublication]
 
     if(publication.liked){
-        fetch(`/publication/like`,{
-            method: "POST",
+        fetch(`/publication/dislike`,{
+            method: "DELETE",
             headers: {
                 "Content-Type": 'application/json'
             },
@@ -73,6 +73,7 @@ function handleLikes(indexPublication){
             const likes = document.getElementById(`likesCount${indexPublication}`)
             heart.src = "../assets/icons/heartIconOutline.png"
             publication.likes--
+            publication.liked = 0
             likes.innerHTML = publication.likes
         })
     } else {
@@ -91,6 +92,7 @@ function handleLikes(indexPublication){
             const likes = document.getElementById(`likesCount${indexPublication}`)
             heart.src = "../assets/icons/heartIconFill.png"
             publication.likes++
+            publication.liked = 1
             likes.innerHTML = publication.likes 
         })
     }

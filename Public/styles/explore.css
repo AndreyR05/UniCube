@@ -118,8 +118,14 @@ body{
 .btnLike{
     display: flex;
     background: none;
+    gap: 5px;
     width: 35px;
     height: min-content;
+}
+.txtLike{
+    font-size: 15px;
+    font-weight: 700;
+    color: #F0F0F0;
 }
 .btnLike > img{
     width: 100%;
