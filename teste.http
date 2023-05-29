@@ -13,3 +13,11 @@ Content-type: application/json
     "title": "123123",
     "desc": "teste123"
 }
+###
+POST http://localhost:3333/cubes/create/1
+Content-Type: application/json
+
+{
+    "name": "Skewb",
+    "rarity": "Pouco Comum"
+}

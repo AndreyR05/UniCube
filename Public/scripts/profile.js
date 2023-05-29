@@ -13,39 +13,6 @@ window.onload = () => {
     }
 }
 
-function showModal(){
-    const modal = document.getElementById("modalCreate")
-    modal.style.display = "flex"
-}
-function closeModal(){
-    const modal = document.getElementById("modalCreate")
-    modal.style.display = "none"
-}
-
-function createPublication(){
-    const idCuber = localStorage.idCuber
-
-    const title = document.getElementById("iptTitle")
-    const desc = document.getElementById("iptDesc")
-
-    fetch(`/publication/create/${idCuber}`,{
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-            title: title.value,
-            desc: desc.value
-        })
-    })
-    .then(() => {
-        title.value = ""
-        desc.value = ""
-        renderUser(idCuber)
-        closeModal()
-    })
-}
-
 async function renderUser(idCuber){
     const username = document.getElementById("username")
     const followers = document.getElementById("qtdFollowers")
@@ -55,6 +22,7 @@ async function renderUser(idCuber){
     const divCubes = document.getElementById("divCubes")
 
     divPublications.innerHTML = ""
+    divCubes.innerHTML = ""
 
     const res = await fetch(`/user/${idCuber}`)
     user = await res.json()
@@ -128,16 +96,89 @@ async function renderUser(idCuber){
             }
             else{
                 divRow.innerHTML += `
-                <div class="divCollectionContentItems">
+                <button class="divCollectionContentItems" onclick="showModalCube()">
                     <img class="imgNewCube" src="assets/icons/plusIcon.png">
                     <p class="txtNewCube">Novo cubo</p>
-                </div>
+                </button>
         
                 `
             }
         }
         divCubes.appendChild(divRow)
     }
+}
+
+function showModalCube(){
+    const modal = document.getElementById("modalAddCube")
+    modal.style.display = "flex"
+}
+function closeModalCube(){
+    const modal = document.getElementById("modalAddCube")
+    modal.style.display = "none"
+}
+function createCube(){
+    const { idCuber } = localStorage
+
+    const name = document.getElementById("iptName")
+    const rarity = document.getElementById("iptRarity")
+
+    if(!name.value || !rarity.value){
+        alert("Campos não preenchidos")
+    }
+    else{
+        console.log(idCuber)
+        fetch(`/cubes/create/${idCuber}`,{
+            method: "POST",
+            headers: {
+                "Content-Type":'application/json'
+            },
+            body: JSON.stringify({
+                name: name.value,
+                rarity: rarity.value
+            })
+        })
+        .then(res => {
+            if(res.status == 200){
+                name.value = ""
+                rarity.value = ""
+                renderUser(idCuber)
+                closeModalCube()
+            }
+        })
+    }
+}
+
+function showModal(){
+    const modal = document.getElementById("modalCreate")
+    modal.style.display = "flex"
+}
+function closeModal(){
+    const modal = document.getElementById("modalCreate")
+    modal.style.display = "none"
+}
+
+function createPublication(){
+    const idCuber = localStorage.idCuber
+
+    const title = document.getElementById("iptTitle")
+    const desc = document.getElementById("iptDesc")
+
+    fetch(`/publication/create/${idCuber}`,{
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            title: title.value,
+            desc: desc.value
+        })
+    })
+    .then(() => {
+        title.value = ""
+        desc.value = ""
+        renderUser(idCuber)
+        closeModal()
+    })
 }
 
 function showEdit(indexPublication){

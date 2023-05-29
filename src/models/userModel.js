@@ -40,7 +40,7 @@ function cubes(idCuber){
     const sql = `
         SELECT *
         FROM CubeCollection
-        WHERE fkCuber = 2
+        WHERE fkCuber = ${idCuber}
     `
     return database.executar(sql)
 }
