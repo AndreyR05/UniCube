@@ -38,12 +38,12 @@ function listPublication(idCuber){
             c.nameCuber,
             c.imageUrl,
             p.*,
-            CASE WHEN EXISTS (SELECT * FROM likes l WHERE l.fkCuber = ${idCuber} and l.fkPublication = p.idPublication)
+            CASE WHEN EXISTS (SELECT * FROM Likes l WHERE l.fkCuber = ${idCuber} and l.fkPublication = p.idPublication)
                 THEN true
                 ELSE false
             END "liked",
             (
-                SELECT COUNT(*) FROM likes l WHERE l.fkPublication = p.idPublication
+                SELECT COUNT(*) FROM Likes l WHERE l.fkPublication = p.idPublication
             ) "likes"
         FROM Publication p
         JOIN Cuber c ON c.idCuber = p.fkCuber
