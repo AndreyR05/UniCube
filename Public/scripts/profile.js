@@ -81,7 +81,7 @@ async function renderUser(idCuber){
                         <p class="txtTitleContent">${user.publications[i*5+j].titlePublication}</p>
                         <div class="divRowData">
                             <div class="divPostLikes">
-                                <img src="../assets/icons/hearthIconOutline.png">
+                                <img src="../assets/icons/heartIconOutline.png">
                                 <p>${user.publications[i*5+j].likes}</p>
                             </div>
 
@@ -155,4 +155,48 @@ function deletePublication(indexPublication){
         renderUser(idCuber)
         closeEdit()
     })   
+}
+
+let contentSection = 0
+
+function changeScreen(form){
+    const contentUser = document.getElementById("contentUser")
+    const underline = document.getElementById("underline")
+    const option1 = document.getElementById("option1")
+    const option2 = document.getElementById("option2")
+    
+    if(form == contentSection){
+        if(form == 0){
+            contentUser.scrollTo(contentUser.offsetWidth+30, 0)
+            contentSection = 1
+            underline.classList.add("disappear")
+            underline.classList.add("appear")
+            option1.children[0].classList.remove("select")
+            setTimeout(() => {
+                option1.removeChild(option1.children[1])
+                option2.innerHTML = `
+                    <button class="txtOptionsTitle select" onclick="changeScreen(0)">Coleção</button>
+                    <div class="divContUnderline">
+                        <div class="divUnderline appear" id="underline"></div>
+                    </div>
+                `
+            }, 600)
+        }
+        else{
+            contentUser.scrollTo(-(contentUser.offsetWidth+30), 0)
+            contentSection = 0
+            underline.classList.add("disappear")
+            underline.classList.add("appear")
+            option2.children[0].classList.remove("select")
+            setTimeout(() => {
+                option2.removeChild(option2.children[1])
+                option1.innerHTML = `
+                    <button class="txtOptionsTitle select" onclick="changeScreen(1)">Publicações</button>
+                    <div class="divContUnderline">
+                        <div class="divUnderline appear" id="underline"></div>
+                    </div>
+                `
+            }, 600)
+        }
+    }
 }
