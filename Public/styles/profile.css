@@ -193,13 +193,28 @@ body{
     gap: 1%
 }
 .divCollectionContentItems{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
     width: 24%;
     background: #171717;
     border-radius: 5px;
+    gap: 10px;
     padding: 10px;
 }
 .divCollectionContentItems > img {
+    border-radius: 2.5px;
     width: 100%;
+}
+.divCollectionContentItems > .imgNewCube {
+    width: 50%;
+    align-self: center;
+}
+.divCollectionContentItems > .txtNewCube {
+    color: #F0F0F0;
+    font-size: 30px;    
+    align-self: center;
+    font-weight: 800;
 }
 .itemInfo{
     display: flex;
