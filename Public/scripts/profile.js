@@ -52,6 +52,7 @@ async function renderUser(idCuber){
     const following = document.getElementById("qtdFollowing")
     const publication = document.getElementById("qtdPublications")
     const divPublications = document.getElementById("divPublications")
+    const divCubes = document.getElementById("divCubes")
 
     divPublications.innerHTML = ""
 
@@ -95,6 +96,47 @@ async function renderUser(idCuber){
             `
         }
         divPublications.appendChild(divRow)
+    }
+    const rowsCubs = (user.cubes.length + 1) / 4
+    for(let i = 0; i < rowsCubs; i++){
+        let numCards = 4
+        if(i >= rowsCubs-1 && (user.cubes.length+1) % 4 != 0){
+            numCards = (user.cubes.length+1) % 4
+        }
+
+        const divRow = document.createElement("div")
+        divRow.classList.add("divRowCards")
+
+        for(let j = 0; j < numCards; j++){
+            console.log(i*4+j, user.cubes.length+1, numCards)
+            if(i*4+j != user.cubes.length){
+                const rarity = 
+                    user.cubes[i*4+j].rarity == "Muito Raro" ? 4
+                    : user.cubes[i*4+j].rarity == "Raro" ? 3
+                    : user.cubes[i*4+j].rarity == "Pouco Comum" ? 2
+                    : 1
+
+                divRow.innerHTML += `
+                    <div class="divCollectionContentItems">
+                        <img src="assets/imgs/octahedron.png" alt="">
+                        <div class="itemInfo">
+                            <p class="txtNameItem">${user.cubes[i*4+j].nameCube}</p>
+                            <img class="rarity" src="assets/icons/rarity${rarity}.png" title="${user.cubes[i*4+j].rarity}">
+                        </div>
+                    </div>
+                `
+            }
+            else{
+                divRow.innerHTML += `
+                <div class="divCollectionContentItems">
+                    <img class="imgNewCube" src="assets/icons/plusIcon.png">
+                    <p class="txtNewCube">Novo cubo</p>
+                </div>
+        
+                `
+            }
+        }
+        divCubes.appendChild(divRow)
     }
 }
 
