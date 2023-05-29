@@ -197,6 +197,7 @@ body{
     justify-content: center;
     flex-direction: column;
     width: 24%;
+    min-height: 320px;
     background: #171717;
     border-radius: 5px;
     gap: 10px;
