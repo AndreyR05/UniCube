@@ -18,7 +18,14 @@ function create(name, rarity, idCuber){
 
     return database.executar(sql)
 }
+function update(name, rarity, idCuber, idCube){
+    const sql = `
+        UPDATE CubeCollection SET nameCube = '${name}', rarity = '${rarity}' WHERE idCube = ${idCube} and fkCuber = ${idCuber};
+    `
+    return database.executar(sql)
+}
 
 module.exports = {
-    create
+    create,
+    update
 }

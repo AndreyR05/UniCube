@@ -16,6 +16,23 @@ function create(req, res){
     }
 }
 
+function update(req, res){
+    const idCuber = req.params.idCuber
+    const { name, rarity, idCube } = req.body
+
+    if(!name || !rarity){
+        res.status(400).json({error: "Campos não preenchidos"})
+    }
+    else{
+        cubesModel.update(name, rarity, idCuber, idCube)
+            .then(response => {
+                console.log(response)
+                res.status(200).json({msg: "Cubo adicionado a coleção com sucesso"})
+            })
+    }
+}
+
 module.exports = {
-    create
+    create,
+    update
 }

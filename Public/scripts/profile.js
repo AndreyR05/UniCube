@@ -94,7 +94,7 @@ async function renderUser(idCuber){
 
                 divRow.innerHTML += `
                     <div class="divCollectionContentItems">
-                        <button class="btnEdit" onclick="showEditCube()">
+                        <button class="btnEdit" onclick="showEditCube(${i*4+j})">
                             <img src="assets/icons/dotsIcon.png">
                         </button>
                         <img src="assets/imgs/octahedron.png" alt="">
@@ -118,14 +118,55 @@ async function renderUser(idCuber){
         divCubes.appendChild(divRow)
     }
 }
-function showEditCube(){
+function showEditCube(indexCube){
     const modal = document.getElementById("modalEditCube")
+    const inputName = document.getElementById("iptNameEdit")
+    const inputRarity = document.getElementById("iptRarityEdit")
+    const editButton = document.getElementById("editButton")
     modal.style.display = "flex"
-}
 
+    const { idCube, nameCube, rarity } = user.cubes[indexCube]
+    inputName.value = nameCube
+    inputRarity.value = rarity
+    
+    editButton.onclick = () => editCube(idCube)
+}
 function closeEditCube(){
     const modal = document.getElementById("modalEditCube")
     modal.style.display = "none"
+}
+
+function editCube(idCube){
+    const { idCuber } = localStorage
+
+    const inputName = document.getElementById("iptNameEdit")
+    const inputRarity = document.getElementById("iptRarityEdit")
+
+    if(!inputName.value || !inputRarity.value){
+        alert("Campos não preenchidos")
+    }
+    else{
+        fetch(`/cubes/update/${idCuber}`,{
+            method: "PUT",
+            headers: {
+                "Content-Type":'application/json'
+            },
+            body: JSON.stringify({
+                idCube: idCube,
+                name: inputName.value,
+                rarity: inputRarity.value
+            })
+        })
+        .then(res => {
+            if(res.status == 200){
+                inputName.value = ""
+                inputRarity.value = ""
+                renderUser(idCuber)
+                closeEditCube()
+                changeScreen(1)
+            }
+        })
+    }
 }
 
 function showModalCube(){
