@@ -9,6 +9,8 @@ window.onload = () => {
     }
     else if(idCuber == navigateId || !navigateId){
         const userImg = document.getElementById("divUserImg")
+        const btnFollow = document.getElementById("btnFollow")
+        btnFollow.style.display = "none"
         userImg.href = "profile.html"
         renderUser(idCuber, false)
     } 
@@ -89,7 +91,7 @@ async function renderUser(idCuber, isVisitor){
                         <div class="divContentCard">
                             <p class="txtTitleContent">${user.publications[i*5+j].titlePublication}</p>
                             <div class="divRowData">
-                                <p>${user.publications[i*5+j].contentPublication}</p>
+                                <p class="txtContent">${user.publications[i*5+j].contentPublication}</p>
                             </div>
                         </div>
                     </div>
