@@ -1,19 +1,28 @@
 let user
 
 window.onload = () => {
-    const idCuber = localStorage.idCuber
+    const { idCuber, navigateId } = localStorage
+    console.log(idCuber, navigateId)
 
-    if(!idCuber){
+    if(!idCuber && !navigateId){
         window.location.href = "/register.html"
     }
-    else{
+    else if(idCuber == navigateId || !navigateId){
         const userImg = document.getElementById("divUserImg")
         userImg.href = "profile.html"
-        renderUser(idCuber)
+        renderUser(idCuber, false)
+    } 
+    else{
+        const userImg = document.getElementById("divUserImg")
+        const btnNewPublication = document.getElementById("btnNewPublication")
+        btnNewPublication.style.display = "none"
+        userImg.href = "profile.html"
+        renderUser(navigateId, true)
     }
 }
 
-async function renderUser(idCuber){
+
+async function renderUser(idCuber, isVisitor){
     const username = document.getElementById("username")
     const followers = document.getElementById("qtdFollowers")
     const following = document.getElementById("qtdFollowing")
@@ -52,25 +61,40 @@ async function renderUser(idCuber){
         divRow.classList.add("divRowCards")
 
         for(let j = 0; j < numCards; j++){
-            divRow.innerHTML += `
-                <div class="divCard">
-                    <img class="imgCover" src="../assets/imgs/octahedron.png">
-                    <div class="divContentCard">
-                        <p class="txtTitleContent">${user.publications[i*5+j].titlePublication}</p>
-                        <div class="divRowData">
-                            <div class="divPostLikes">
-                                <img src="../assets/icons/heartIconOutline.png">
-                                <p>${user.publications[i*5+j].likes}</p>
-                            </div>
+            if(isVisitor != true){
+                divRow.innerHTML += `
+                    <div class="divCard">
+                        <img class="imgCover" src="../assets/imgs/octahedron.png">
+                        <div class="divContentCard">
+                            <p class="txtTitleContent">${user.publications[i*5+j].titlePublication}</p>
+                            <div class="divRowData">
+                                <div class="divPostLikes">
+                                    <img src="../assets/icons/heartIconOutline.png">
+                                    <p>${user.publications[i*5+j].likes}</p>
+                                </div>
 
-                            <button class="btnPostEdit" onclick="showEdit(${i*5+j})">
-                                <img src="../assets/icons/updateIcon.png">
-                                <p>Editar</p>
-                            </button>
+                                <button class="btnPostEdit" onclick="showEdit(${i*5+j})">
+                                    <img src="../assets/icons/updateIcon.png">
+                                    <p>Editar</p>
+                                </button>
+                            </div>
                         </div>
                     </div>
-                </div>
-            `
+                `
+            }
+            else {
+                divRow.innerHTML += `
+                    <div class="divCard">
+                        <img class="imgCover" src="../assets/imgs/octahedron.png">
+                        <div class="divContentCard">
+                            <p class="txtTitleContent">${user.publications[i*5+j].titlePublication}</p>
+                            <div class="divRowData">
+                                <p>${user.publications[i*5+j].contentPublication}</p>
+                            </div>
+                        </div>
+                    </div>
+                `
+            }
         }
         divPublications.appendChild(divRow)
     }
@@ -91,21 +115,34 @@ async function renderUser(idCuber){
                     : user.cubes[i*4+j].rarity == "Raro" ? 3
                     : user.cubes[i*4+j].rarity == "Pouco Comum" ? 2
                     : 1
-
-                divRow.innerHTML += `
-                    <div class="divCollectionContentItems">
-                        <button class="btnEdit" onclick="showEditCube(${i*4+j})">
-                            <img src="assets/icons/dotsIcon.png">
-                        </button>
-                        <img src="assets/imgs/octahedron.png" alt="">
-                        <div class="itemInfo">
-                            <p class="txtNameItem">${user.cubes[i*4+j].nameCube}</p>
-                            <img class="rarity" src="assets/icons/rarity${rarity}.png" title="${user.cubes[i*4+j].rarity}">
+                if(isVisitor != true){
+                    divRow.innerHTML += `
+                        <div class="divCollectionContentItems">
+                            <button class="btnEdit" onclick="showEditCube(${i*4+j})">
+                                <img src="assets/icons/dotsIcon.png">
+                            </button>
+                            <img src="assets/imgs/octahedron.png" alt="">
+                            <div class="itemInfo">
+                                <p class="txtNameItem">${user.cubes[i*4+j].nameCube}</p>
+                                <img class="rarity" src="assets/icons/rarity${rarity}.png" title="${user.cubes[i*4+j].rarity}">
+                            </div>
                         </div>
-                    </div>
-                `
+                    `
+                }
+                else{
+                    divRow.innerHTML += `
+                        <div class="divCollectionContentItems">
+                            <img src="assets/imgs/octahedron.png" alt="">
+                            <div class="itemInfo">
+                                <p class="txtNameItem">${user.cubes[i*4+j].nameCube}</p>
+                                <img class="rarity" src="assets/icons/rarity${rarity}.png" title="${user.cubes[i*4+j].rarity}">
+                            </div>
+                        </div>
+                    `
+                }
+    
             }
-            else{
+            else if(isVisitor != true){
                 divRow.innerHTML += `
                     <button class="divCollectionContentItems" onclick="showModalCube()">
                         <img class="imgNewCube" src="assets/icons/plusIcon.png">

@@ -6,7 +6,8 @@ window.onload = () => {
 
     if(idCuber){
         const userImg = document.getElementById("divUserImg")
-        userImg.href = "profile.html"
+        userImg.onclick = () => navigate(idCuber)
+
         fetch(`/publication/explore/${idCuber}`)
         .then(async res => {
             const publicationsJson = (await res.json()).publications
@@ -30,7 +31,7 @@ function loadPublications(publications){
             divRow.innerHTML += `
                 <div class="divCard">
                     <div class="divTitleCard">
-                        <div class="divUserCard">
+                        <div class="divUserCard" onclick="navigate(${publications[i*3+j].fkCuber})">
                             <div class="imgUserCard">
                                 <img src="../assets/icons/userIcon.png">
                             </div>
@@ -51,6 +52,11 @@ function loadPublications(publications){
         }
         content.appendChild(divRow)
     }
+}
+
+function navigate(idCuber){
+    localStorage.navigateId = idCuber
+    window.location.href = "/profile.html" 
 }
 
 function handleLikes(indexPublication){
