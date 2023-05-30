@@ -32,7 +32,16 @@ function update(req, res){
     }
 }
 
+function deleteCube(req, res){
+    const { idCuber, idCube } = req.body
+    cubesModel.deleteCube(idCuber, idCube)
+        .then(() => {
+            res.status(200).json({msg: "Cubo removido da coleção com sucesso"})
+        })
+}
+
 module.exports = {
     create,
-    update
+    update,
+    deleteCube
 }

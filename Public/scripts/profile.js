@@ -107,11 +107,10 @@ async function renderUser(idCuber){
             }
             else{
                 divRow.innerHTML += `
-                <button class="divCollectionContentItems" onclick="showModalCube()">
-                    <img class="imgNewCube" src="assets/icons/plusIcon.png">
-                    <p class="txtNewCube">Novo cubo</p>
-                </button>
-        
+                    <button class="divCollectionContentItems" onclick="showModalCube()">
+                        <img class="imgNewCube" src="assets/icons/plusIcon.png">
+                        <p class="txtNewCube">Novo cubo</p>
+                    </button>
                 `
             }
         }
@@ -123,6 +122,7 @@ function showEditCube(indexCube){
     const inputName = document.getElementById("iptNameEdit")
     const inputRarity = document.getElementById("iptRarityEdit")
     const editButton = document.getElementById("editButton")
+    const btnDelete = document.getElementById("btnDelete")
     modal.style.display = "flex"
 
     const { idCube, nameCube, rarity } = user.cubes[indexCube]
@@ -130,6 +130,7 @@ function showEditCube(indexCube){
     inputRarity.value = rarity
     
     editButton.onclick = () => editCube(idCube)
+    btnDelete.onclick = () => deleteCube(idCube)
 }
 function closeEditCube(){
     const modal = document.getElementById("modalEditCube")
@@ -167,6 +168,28 @@ function editCube(idCube){
             }
         })
     }
+}
+
+function deleteCube(idCube){
+    const { idCuber } = localStorage
+
+    fetch(`/cubes/delete`,{
+        method: "DELETE",
+        headers: {
+            "Content-Type":'application/json'
+        },
+        body: JSON.stringify({
+            idCube: idCube,
+            idCuber: idCuber
+        })
+    })
+    .then(res => {
+        if(res.status == 200){
+            renderUser(idCuber)
+            closeEditCube()
+            changeScreen(1)
+        }
+    })
 }
 
 function showModalCube(){
