@@ -2,8 +2,7 @@ let user
 let chart
 
 window.onload = async () => {
-    const { idCuber, navigateId } = localStorage
-    console.log(idCuber, navigateId)
+    const { idCuber, navigateId } = localStorage 
 
     if(!idCuber && !navigateId){
         window.location.href = "/register.html"
@@ -23,18 +22,19 @@ window.onload = async () => {
             data: {
                 labels: [],
                 datasets: [{
-                    label: 'My First Dataset',
+                    label: 'Curtidas',
                     data: [],
                     fill: false,
                     borderColor: '#DC2626',
                     borderWidth: 5,
                     pointBorderWidth: 0,
+                    // tension: .4
                 }]
             },
             options: {
                 scale:{
                     y: {
-                        min: 0
+                        min: 0,
                     }
                 },
                 plugins: {
@@ -74,16 +74,26 @@ async function likesByDate(idPublication){
     const { likes } = await res.json()
     console.log(likes)
 
-    let dates = []
+    let labels = []
 
-    for(let i = new Date(likes[0].datePublication), j = 0; i != new Date().getDate() && j < 5; j++){
-        i.setDate(i.getDate()+1)
-        console.log(new Date().getDate(),)
-        alert(i)
+    const datePublication = new Date(likes[0].datePublication)
+    const today = new Date()
+    today.setDate(today.getDate()+1)
+
+    for(let i = datePublication; i.toDateString() != today.toDateString(); i.setDate(i.getDate()+1)){
+        labels.push(i.toJSON().split('T')[0].split('-').reverse().join('/'))
     }
 
-    const labels = likes.map(item => item.date.split('T')[0].split('-').reverse().join('/'))
-    const data = likes.map(item => item.amount)
+    const datesValues = likes.map(item => item.date.split('T')[0].split('-').reverse().join('/'))
+    const values = likes.map(item => item.amount)
+
+    const data = labels.map(item => {
+        const labelIndex = datesValues.indexOf(item)
+        if(labelIndex != -1){
+            return values[labelIndex]
+        }
+        return 0
+    })
 
     chart.data.datasets[0].data = data
     chart.data.labels = labels 
