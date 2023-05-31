@@ -15,8 +15,14 @@
 </head>
 </head>
 <body>
-    <div class="divBackgroundModal" style="display: flex"id="modalCreate">
-        <div class="divModal">
+    <div class="divBackgroundModal" id="modalChart">
+        <div class="divModal" style="width: 50%;">
+            <div class="divRowLikes">
+                <p>Curtidas por dia</p>
+                <div onclick="closeChart()">
+                    x
+                </div>
+            </div>
             <canvas id="chart"></canvas>
         </div>
     </div>
@@ -72,7 +78,7 @@
                 <button class="btnCancel" onclick="closeEditCube()">
                     Cancelar
                 </button>
-                <button class="btnTrash" id="btnDelete">
+                <button class="btnTrash" id="btnDeleteCube">
                     <img src="assets/icons/trashIcon.png" alt="">
                 </button>
                 <button class="btnSend" id="editButton">

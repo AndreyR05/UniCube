@@ -60,6 +60,14 @@ function removeLike(req,res){
             res.status(200).json({msg: "curtido com sucesso"})
         })
 }
+function likesByDate(req, res){
+    const { idPublication } = req.params
+
+    publicationModel.likesByDate(idPublication)
+        .then(response => {
+            res.status(200).json({likes: response})
+        })
+}
 
 module.exports = {
     create,
@@ -68,5 +76,6 @@ module.exports = {
     listPublication,
     listFollowedPublication,
     addLike,
-    removeLike
+    removeLike,
+    likesByDate
 }

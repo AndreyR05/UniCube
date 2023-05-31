@@ -21,24 +21,29 @@ window.onload = async () => {
         chart = new Chart(canvas, {
             type: 'line',
             data: {
-                labels: ["a","a","a","a","a","a",],
+                labels: [],
                 datasets: [{
                     label: 'My First Dataset',
-                    data: [65, 59, 80, 81, 56, 55, 40],
+                    data: [],
                     fill: false,
                     borderColor: '#DC2626',
                     borderWidth: 5,
                     pointBorderWidth: 0,
-                    stepped: "middle",
                 }]
             },
             options: {
+                scale:{
+                    y: {
+                        min: 0
+                    }
+                },
                 plugins: {
                     legend: {
                         display: false
                     }
                 }
             }
+
         })
     }
     else{
@@ -59,6 +64,34 @@ window.onload = async () => {
 
         renderUser(navigateId, true)
     }
+}
+
+async function likesByDate(idPublication){
+    const  modal = document.getElementById("modalChart")
+    modal.style.display = "flex"
+    
+    const res = await fetch(`/publication/${idPublication}/likes`)
+    const { likes } = await res.json()
+    console.log(likes)
+
+    let dates = []
+
+    for(let i = new Date(likes[0].datePublication), j = 0; i != new Date().getDate() && j < 5; j++){
+        i.setDate(i.getDate()+1)
+        console.log(new Date().getDate(),)
+        alert(i)
+    }
+
+    const labels = likes.map(item => item.date.split('T')[0].split('-').reverse().join('/'))
+    const data = likes.map(item => item.amount)
+
+    chart.data.datasets[0].data = data
+    chart.data.labels = labels 
+    chart.update()
+}
+function closeChart(){
+    const  modal = document.getElementById("modalChart")
+    modal.style.display = "none"
 }
 
 function navigate(idCuber){
@@ -112,7 +145,7 @@ async function renderUser(idCuber, isVisitor){
                         <div class="divContentCard">
                             <p class="txtTitleContent">${user.publications[i*5+j].titlePublication}</p>
                             <div class="divRowData">
-                                <div class="divPostLikes">
+                                <div class="divPostLikes" onclick="likesByDate(${user.publications[i*5+j].idPublication})">
                                     <img src="../assets/icons/heartIconOutline.png">
                                     <p>${user.publications[i*5+j].likes}</p>
                                 </div>
@@ -203,7 +236,7 @@ function showEditCube(indexCube){
     const inputName = document.getElementById("iptNameEdit")
     const inputRarity = document.getElementById("iptRarityEdit")
     const editButton = document.getElementById("editButton")
-    const btnDelete = document.getElementById("btnDelete")
+    const btnDelete = document.getElementById("btnDeleteCube")
     modal.style.display = "flex"
 
     const { idCube, nameCube, rarity } = user.cubes[indexCube]

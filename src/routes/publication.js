@@ -24,5 +24,8 @@ router.post("/like", (req, res) => {
 router.delete("/dislike",(req, res) => {
     publicationController.removeLike(req, res)
 })
+router.get("/:idPublication/likes", (req, res) => {
+    publicationController.likesByDate(req, res)
+})
 
 module.exports = router

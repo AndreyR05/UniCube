@@ -427,3 +427,22 @@ input[type="file"]{
     border: 2px solid #EAB308;
     background: #FACC15;
 }
+.divRowLikes{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.divRowLikes > p{
+    font-size: 30px;
+    font-weight: 800;
+    color: #f0f0f0;
+}
+.divRowLikes > div{
+    display: flex;
+    width: 50px;
+    height: 50px;
+    background-color: #DC2626;
+    justify-content: center;
+    align-items: center;
+    border-radius: 5px;
+}

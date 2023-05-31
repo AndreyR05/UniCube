@@ -3,9 +3,9 @@ const database = require("../database/config")
 function create(title, titlePublication, idCuber){
     const sql = `
         INSERT INTO
-            Publication (titlePublication, contentPublication, fkCuber)
+            Publication (titlePublication, contentPublication, fkCuber, datePublication)
         VALUES
-            ('${title}', '${titlePublication}', ${idCuber});
+            ('${title}', '${titlePublication}', ${idCuber}, DATE(NOW()));
     `
 
     return database.executar(sql)
@@ -89,6 +89,19 @@ function removeLike(idPublication, idCuber){
     `
     return database.executar(sql)
 }
+function likesByDate(idPublication){
+    const sql = `
+        SELECT 
+            COUNT(*) 'amount',
+            l.likeDate 'date',
+            (SELECT datePublication FROM Publication p WHERE p.idPublication = l.fkPublication) 'datePublication'
+        FROM Likes l
+        WHERE l.fkPublication = ${idPublication} 
+        GROUP BY l.fkPublication, l.likeDate
+        ORDER BY l.likeDate;    
+    `
+    return database.executar(sql)
+}
 
 module.exports = {
     create,
@@ -97,5 +110,6 @@ module.exports = {
     listPublication,
     listFollowedPublication,
     addLike,
-    removeLike
+    removeLike,
+    likesByDate
 }
