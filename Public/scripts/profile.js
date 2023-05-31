@@ -1,6 +1,6 @@
 let user
 
-window.onload = () => {
+window.onload = async () => {
     const { idCuber, navigateId } = localStorage
     console.log(idCuber, navigateId)
 
@@ -10,19 +10,36 @@ window.onload = () => {
     else if(idCuber == navigateId || !navigateId){
         const userImg = document.getElementById("divUserImg")
         const btnFollow = document.getElementById("btnFollow")
+
         btnFollow.style.display = "none"
-        userImg.href = "profile.html"
+        userImg.onclick = () => navigate(idCuber)
+
         renderUser(idCuber, false)
     } 
     else{
         const userImg = document.getElementById("divUserImg")
         const btnNewPublication = document.getElementById("btnNewPublication")
+        const btnFollow = document.getElementById("btnFollow")
+
+        const res = await fetch(`/user/following/${idCuber}`)
+        const { following } = await res.json()
+
+        if(following.map(item => item.fkCuber).indexOf(Number(navigateId)) != -1){
+            btnFollow.innerHTML = "Seguindo"
+            btnFollow.onclick = () => follow(true)
+        }
+
         btnNewPublication.style.display = "none"
-        userImg.href = "profile.html"
+        userImg.onclick = () => navigate(idCuber)
+
         renderUser(navigateId, true)
     }
 }
 
+function navigate(idCuber){
+    localStorage.navigateId = idCuber
+    window.location.href = "/profile.html" 
+}
 
 async function renderUser(idCuber, isVisitor){
     const username = document.getElementById("username")
@@ -361,6 +378,45 @@ function deletePublication(indexPublication){
         renderUser(idCuber)
         closeEdit()
     })   
+}
+
+function follow(isFollower){
+    const btnFollow = document.getElementById("btnFollow")
+    const {idCuber, navigateId} = localStorage
+
+    if(isFollower){
+        fetch(`/user/unfollow`,{
+            method: "DELETE",
+            headers: {
+                "Content-Type": 'application/json'
+            },
+            body: JSON.stringify({
+                idCuber: navigateId,
+                idFollower: idCuber
+            })
+        })
+        .then(() => {
+            btnFollow.innerHTML = "Seguir"
+            btnFollow.onclick = () => follow(false)
+            renderUser(navigateId, true)
+        })
+    } else{
+        fetch(`/user/follow`,{
+            method: "POST",
+            headers: {
+                "Content-Type": 'application/json'
+            },
+            body: JSON.stringify({
+                idCuber:  navigateId,
+                idFollower: idCuber
+            })
+        })
+        .then(() => {
+            btnFollow.innerHTML = "Seguindo"
+            btnFollow.onclick = () => follow(true)
+            renderUser(navigateId, true)
+        })
+    }
 }
 
 let contentSection = 0

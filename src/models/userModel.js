@@ -82,11 +82,34 @@ function register(username, password) {
     return database.executar(instrucao);
 }
 
+function follow(idCuber, idFollower){
+    const sql = `
+        INSERT INTO Followers VALUES (${idCuber},${idFollower}, DATE(NOW()));
+    `
+    return database.executar(sql)
+}
+function unfollow(idCuber, idFollower){
+    const sql = `
+        DELETE FROM Followers WHERE fkCuber = ${idCuber} and fkFollower = ${idFollower};
+    `
+    return database.executar(sql)
+}
+
+function following(idCuber){
+    const sql = `
+    SELECT fkCuber FROM Followers WHERE fkFollower = ${idCuber};
+    `
+    return database.executar(sql)
+}
+
 module.exports = {
     infos,
     login,
     register,
     findByName,
     publications,
-    cubes
+    cubes,
+    follow,
+    unfollow,
+    following
 };

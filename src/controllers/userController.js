@@ -78,8 +78,37 @@ function register(req, res) {
     }
 }
 
+function follow(req, res){
+    const {idCuber, idFollower} = req.body
+
+    userModel.follow(idCuber, idFollower)
+        .then(() => {
+            res.status(200).json({msg: "Usuário seguido com sucesso"})
+        })
+}
+function unfollow(req, res){
+    const {idCuber, idFollower} = req.body
+
+    userModel.unfollow(idCuber, idFollower)
+        .then(() => {
+            res.status(200).json({msg: "Deixou de seguir o usuário com sucesso"})
+        })
+}
+
+function following(req, res){
+    const {idCuber} = req.params
+
+    userModel.following(idCuber)
+        .then(response => {
+            res.status(200).json({following: response})
+        })
+}
+
 module.exports = {
     login,
     register,
-    infos
+    infos,
+    follow,
+    unfollow,
+    following,
 }
