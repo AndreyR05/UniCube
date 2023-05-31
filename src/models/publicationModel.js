@@ -53,6 +53,28 @@ function listPublication(idCuber){
     `
     return database.executar(sql)
 }
+function listFollowedPublication(idCuber){
+    const sql = `
+        SELECT
+            c.nameCuber,
+            c.imageUrl,
+            p.*,
+            CASE WHEN EXISTS (SELECT * FROM Likes l WHERE l.fkCuber = ${idCuber} and l.fkPublication = p.idPublication)
+                THEN true
+                ELSE false
+            END "liked",
+            (
+                SELECT COUNT(*) FROM Likes l WHERE l.fkPublication = p.idPublication
+            ) "likes"
+        FROM Publication p
+        JOIN Cuber c ON c.idCuber = p.fkCuber
+        JOIN Followers f ON f.fkCuber = c.idCuber
+        WHERE p.fkCuber != ${idCuber} AND f.fkFollower = ${idCuber}
+        ORDER BY p.idPublication 
+        DESC;
+    `
+    return database.executar(sql)
+}
 
 function addLike(idPublication, idCuber){
     const sql = `
@@ -73,6 +95,7 @@ module.exports = {
     update,
     deletePublication,
     listPublication,
+    listFollowedPublication,
     addLike,
     removeLike
 }

@@ -5,20 +5,30 @@ window.onload = () => {
     const { idCuber } = localStorage
 
     if(idCuber){
+        const contentExplore = document.getElementById("contentExplore")
+        const contentFollowing = document.getElementById("contentFollow")
+
         const userImg = document.getElementById("divUserImg")
         userImg.onclick = () => navigate(idCuber)
+
+        fetch(`/publication/followed/${idCuber}`)
+        .then(async res => {
+            const publicationsJson = (await res.json()).publications
+            console.log(publicationsJson)
+            publications = publicationsJson
+            loadPublications(publicationsJson, contentFollowing)
+        })
 
         fetch(`/publication/explore/${idCuber}`)
         .then(async res => {
             const publicationsJson = (await res.json()).publications
             publications = publicationsJson
-            loadPublications(publicationsJson)
+            loadPublications(publicationsJson, contentExplore)
         })
     }
 }
 
-function loadPublications(publications){
-    const content = document.getElementById("contentExplore")
+function loadPublications(publications, content){
     for(let i = 0; i < publications.length / 3; i++){
         let items = 3
         if(i >= publications.length / 3 - 1 &&  publications.length % 3 != 0){
