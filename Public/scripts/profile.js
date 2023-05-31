@@ -1,4 +1,5 @@
 let user
+let chart
 
 window.onload = async () => {
     const { idCuber, navigateId } = localStorage
@@ -8,6 +9,7 @@ window.onload = async () => {
         window.location.href = "/register.html"
     }
     else if(idCuber == navigateId || !navigateId){
+        const canvas = document.getElementById("chart")
         const userImg = document.getElementById("divUserImg")
         const btnFollow = document.getElementById("btnFollow")
 
@@ -15,7 +17,30 @@ window.onload = async () => {
         userImg.onclick = () => navigate(idCuber)
 
         renderUser(idCuber, false)
-    } 
+
+        chart = new Chart(canvas, {
+            type: 'line',
+            data: {
+                labels: ["a","a","a","a","a","a",],
+                datasets: [{
+                    label: 'My First Dataset',
+                    data: [65, 59, 80, 81, 56, 55, 40],
+                    fill: false,
+                    borderColor: '#DC2626',
+                    borderWidth: 5,
+                    pointBorderWidth: 0,
+                    stepped: "middle",
+                }]
+            },
+            options: {
+                plugins: {
+                    legend: {
+                        display: false
+                    }
+                }
+            }
+        })
+    }
     else{
         const userImg = document.getElementById("divUserImg")
         const btnNewPublication = document.getElementById("btnNewPublication")
@@ -38,7 +63,7 @@ window.onload = async () => {
 
 function navigate(idCuber){
     localStorage.navigateId = idCuber
-    window.location.href = "/profile.html" 
+    window.location.href = "/profile.html"
 }
 
 async function renderUser(idCuber, isVisitor){
@@ -129,7 +154,7 @@ async function renderUser(idCuber, isVisitor){
 
         for(let j = 0; j < numCards; j++){
             if(i*4+j != user.cubes.length){
-                const rarity = 
+                const rarity =
                     user.cubes[i*4+j].rarity == "Muito Raro" ? 4
                     : user.cubes[i*4+j].rarity == "Raro" ? 3
                     : user.cubes[i*4+j].rarity == "Pouco Comum" ? 2
@@ -159,7 +184,7 @@ async function renderUser(idCuber, isVisitor){
                         </div>
                     `
                 }
-    
+
             }
             else if(isVisitor != true){
                 divRow.innerHTML += `
@@ -184,7 +209,7 @@ function showEditCube(indexCube){
     const { idCube, nameCube, rarity } = user.cubes[indexCube]
     inputName.value = nameCube
     inputRarity.value = rarity
-    
+
     editButton.onclick = () => editCube(idCube)
     btnDelete.onclick = () => deleteCube(idCube)
 }
@@ -377,7 +402,7 @@ function deletePublication(indexPublication){
     .then((res) => {
         renderUser(idCuber)
         closeEdit()
-    })   
+    })
 }
 
 function follow(isFollower){
@@ -426,7 +451,7 @@ function changeScreen(form){
     const underline = document.getElementById("underline")
     const option1 = document.getElementById("option1")
     const option2 = document.getElementById("option2")
-    
+
     if(form == contentSection){
         if(form == 0){
             contentUser.scrollTo(contentUser.offsetWidth+30, 0)
