@@ -28,13 +28,21 @@ window.onload = async () => {
                     borderColor: '#DC2626',
                     borderWidth: 5,
                     pointBorderWidth: 0,
-                    // tension: .4
+                    tension: .4
                 }]
             },
             options: {
-                scale:{
+                scales: {
                     y: {
-                        min: 0,
+                        grid: {
+                            color: '#F0F0F04D'
+                        },
+                        suggestedMax: 10,
+                    },
+                    x: {
+                        grid: {
+                            color: '#F0F0F04D'
+                        },
                     }
                 },
                 plugins: {
@@ -42,7 +50,8 @@ window.onload = async () => {
                         display: false
                     }
                 }
-            }
+            },
+            
 
         })
     }
@@ -68,36 +77,52 @@ window.onload = async () => {
 
 async function likesByDate(idPublication){
     const  modal = document.getElementById("modalChart")
+    const noLikesMsg = document.getElementById("divNoLikes")
+    const chartCanvas = document.getElementById("chart")
     modal.style.display = "flex"
     
     const res = await fetch(`/publication/${idPublication}/likes`)
-    const { likes } = await res.json()
+    const { likes }  = await res.json()
+
     console.log(likes)
+    if(likes.length > 0){
+        noLikesMsg.style.display = "none"
+        chartCanvas.style.display = "flex"
 
-    let labels = []
+        let labels = []
+        const datePublication = new Date(likes[0].datePublication)
+        const today = new Date()
+        today.setDate(today.getDate()+1)
 
-    const datePublication = new Date(likes[0].datePublication)
-    const today = new Date()
-    today.setDate(today.getDate()+1)
-
-    for(let i = datePublication; i.toDateString() != today.toDateString(); i.setDate(i.getDate()+1)){
-        labels.push(i.toJSON().split('T')[0].split('-').reverse().join('/'))
-    }
-
-    const datesValues = likes.map(item => item.date.split('T')[0].split('-').reverse().join('/'))
-    const values = likes.map(item => item.amount)
-
-    const data = labels.map(item => {
-        const labelIndex = datesValues.indexOf(item)
-        if(labelIndex != -1){
-            return values[labelIndex]
+        for(let i = datePublication; i.toDateString() != today.toDateString(); i.setDate(i.getDate()+1)){
+            labels.push(i.toJSON().split('T')[0].split('-').reverse().join('/'))
         }
-        return 0
-    })
 
-    chart.data.datasets[0].data = data
-    chart.data.labels = labels 
-    chart.update()
+        const datesValues = likes.map(item => item.date.split('T')[0].split('-').reverse().join('/'))
+        const values = likes.map(item => item.amount)
+
+        const data = labels.map(item => {
+            const labelIndex = datesValues.indexOf(item)
+            if(labelIndex != -1){
+                return values[labelIndex]
+            }
+            return 0
+        })
+
+        if(data.length < 6){
+            chart.options.scales.x.min = 0
+            chart.options.scales.x.max = data.length
+        }else{
+            chart.options.scales.x.min = data.length-6
+            chart.options.scales.x.max = data.length
+        }
+        chart.data.datasets[0].data = data
+        chart.data.labels = labels
+        chart.update()
+    }else{
+        noLikesMsg.style.display = "flex"
+        chartCanvas.style.display = "none"
+    }
 }
 function closeChart(){
     const  modal = document.getElementById("modalChart")
