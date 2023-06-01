@@ -84,7 +84,6 @@ async function likesByDate(idPublication){
     const res = await fetch(`/publication/${idPublication}/likes`)
     const { likes }  = await res.json()
 
-    console.log(likes)
     if(likes.length > 0){
         noLikesMsg.style.display = "none"
         chartCanvas.style.display = "flex"
@@ -116,6 +115,7 @@ async function likesByDate(idPublication){
             chart.options.scales.x.min = data.length-6
             chart.options.scales.x.max = data.length
         }
+        console.log(data)
         chart.data.datasets[0].data = data
         chart.data.labels = labels
         chart.update()
@@ -128,6 +128,29 @@ function closeChart(){
     const  modal = document.getElementById("modalChart")
     modal.style.display = "none"
 }
+
+const chartElement = document.getElementById("chart")
+chartElement.addEventListener("wheel",(e) => {
+    console.log(chart.options.scales.x.min, chart.options.scales.x.max)
+    if (e.deltaY > 0) {
+        if (chart.options.scales.x.max >= chart.data.datasets[0].data.length - 1) {
+            chart.options.scales.x.min = chart.data.datasets[0].data.length - 6;
+            chart.options.scales.x.max = chart.data.datasets[0].data.length - 1;
+        } else {
+            chart.options.scales.x.min += 1;
+            chart.options.scales.x.max += 1;
+        }
+      } else if (e.deltaY < 0) {
+        if (chart.options.scales.x.min <= 0) {
+            chart.options.scales.x.min = 0;
+            chart.options.scales.x.max = 5;
+        } else {
+            chart.options.scales.x.min -= 1;
+            chart.options.scales.x.max -= 1;
+        }
+    }
+    chart.update()
+})
 
 function navigate(idCuber){
     localStorage.navigateId = idCuber
