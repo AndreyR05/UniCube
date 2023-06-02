@@ -1,6 +1,7 @@
 let exploreSection = 0
 let publications = []
 
+
 window.onload = () => {
     const { idCuber } = localStorage
 
@@ -15,8 +16,6 @@ window.onload = () => {
         fetch(`/publication/followed/${idCuber}`)
         .then(async res => {
             const publicationsJson = (await res.json()).publications
-            console.log(publicationsJson)
-            publications = publicationsJson
             loadPublications(publicationsJson, contentFollowing)
         })
 

@@ -255,6 +255,8 @@ body{
     width: 300px;
     font-size: 30px;
     font-weight: 800;
+    text-align: center;
+    color: #171717
 }
 .spaceship{
     position: absolute;
