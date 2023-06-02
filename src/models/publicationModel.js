@@ -32,6 +32,13 @@ function deletePublication(idPublication){
     return database.executar(sql)
 }
 
+function removeLikesPublication(idPublication){
+    const sql = `
+        DELETE FROM Likes WHERE fkPublication = ${idPublication} 
+    `
+    return database.executar(sql)
+}
+
 function listPublication(idCuber){
     const sql = `
         SELECT
@@ -108,6 +115,7 @@ module.exports = {
     update,
     deletePublication,
     listPublication,
+    removeLikesPublication,
     listFollowedPublication,
     addLike,
     removeLike,

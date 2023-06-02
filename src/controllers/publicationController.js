@@ -23,10 +23,12 @@ function update(req, res){
 function deletePublication(req, res){
     const { idPublication } = req.params
 
-    publicationModel.deletePublication(idPublication)
+    publicationModel.removeLikesPublication(idPublication).then(() => {
+        publicationModel.deletePublication(idPublication)
         .then(() => {
             res.status(200).json({msg: "deletado com sucesso"})
         })
+    })
 }
 function listPublication(req, res){
     const { idPublication } = req.params
