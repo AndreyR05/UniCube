@@ -389,6 +389,9 @@ body{
     color: #F0F0F0;
     outline: none;
 }
+.iptForm > option{
+    color: #171717
+}
 .iptDesc{
     height: 300px;
     border: 2px solid #F0F0F0;
