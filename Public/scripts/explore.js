@@ -7,30 +7,24 @@ window.onload = () => {
     const { idCuber } = localStorage
 
     if(idCuber){
-        const contentExplore = document.getElementById("contentExplore")
-        const contentFollowing = document.getElementById("contentFollow")
 
         const userImg = document.getElementById("divUserImg")
         userImg.href = "#"
         userImg.onclick = () => Options()
 
-        fetch(`/publication/followed/${idCuber}`)
-        .then(async res => {
-            const publicationsJson = (await res.json()).publications
-            publicationsFollow = publicationsJson
-            loadPublications(publicationsJson, contentFollowing, true)
-        })
-
         fetch(`/publication/explore/${idCuber}`)
         .then(async res => {
             const publicationsJson = (await res.json()).publications
             publications = publicationsJson
-            loadPublications(publicationsJson, contentExplore, false)
+            loadPublications(publicationsJson)
         })
     }
 }
 
-function loadPublications(publications, content,isFollow){
+function loadPublications(publications){
+    const contentExplore = document.getElementById("contentExplore")
+    const contentFollowing = document.getElementById("contentFollow")
+
     for(let i = 0; i < publications.length / 3; i++){
         let items = 3
         if(i >= publications.length / 3 - 1 &&  publications.length % 3 != 0){
@@ -40,6 +34,9 @@ function loadPublications(publications, content,isFollow){
         const divRow = document.createElement("div")
         divRow.classList.add("divRowCards")
         for(let j = 0; j < items; j++){
+            if(publications[i*3+j].follow){
+                publicationsFollow.push(publications[i*3+j])
+            }
             divRow.innerHTML += `
                 <div class="divCard">
                     <div class="divTitleCard">
@@ -49,7 +46,7 @@ function loadPublications(publications, content,isFollow){
                             </div>
                             <p>${publications[i*3+j].nameCuber}</p>
                         </div>
-                        <button class="btnLike" onclick="handleLikes(${i*3+j},${isFollow})">
+                        <button class="btnLike" onclick="handleLikes(${publications[i*3+j].idPublication})">
                             <p id="likesCount${i*3+j}" class="txtLike">${publications[i*3+j].likes}</p>
                             <img id="heart${i*3+j}" src="${publications[i*3+j].liked ? "../assets/icons/heartIconFill.png" : "../assets/icons/heartIconOutline.png"}">
                         </button>
@@ -62,16 +59,50 @@ function loadPublications(publications, content,isFollow){
                 </div>
             `
         }
-        content.appendChild(divRow)
+        contentExplore.appendChild(divRow)
+    }
+    
+    for(let i = 0; i < publicationsFollow.length / 3; i++){
+        let items = 3
+        if(i >= publicationsFollow.length / 3 - 1 &&  publicationsFollow.length % 3 != 0){
+            items = publicationsFollow.length % 3
+        }
+
+        const divRow = document.createElement("div")
+        divRow.classList.add("divRowCards")
+        for(let j = 0; j < items; j++){
+            divRow.innerHTML += `
+                <div class="divCard">
+                    <div class="divTitleCard">
+                        <div class="divUserCard" onclick="navigate(${publicationsFollow[i*3+j].fkCuber})">
+                            <div class="imgUserCard">
+                                <img src="../assets/icons/userIcon.png">
+                            </div>
+                            <p>${publicationsFollow[i*3+j].nameCuber}</p>
+                        </div>
+                        <button class="btnLike" onclick="handleLikes(${publicationsFollow[i*3+j].idPublication})">
+                            <p id="likesCountFollow${i*3+j}" class="txtLike">${publicationsFollow[i*3+j].likes}</p>
+                            <img id="heartFollow${i*3+j}" src="${publicationsFollow[i*3+j].liked ? "../assets/icons/heartIconFill.png" : "../assets/icons/heartIconOutline.png"}">
+                        </button>
+                    </div>
+                    <img class="imgCover" src="../assets/imgs/octahedron.png">
+                    <div class="divContentCard">
+                        <p class="txtTitleContent">${publicationsFollow[i*3+j].titlePublication}</p>
+                        <p class="txtContent">${publicationsFollow[i*3+j].contentPublication}</p>
+                    </div>
+                </div>
+            `
+        }
+        contentFollowing.appendChild(divRow)
     }
 }
 
-function handleLikes(indexPublication, isFollow){
+function handleLikes(idPublication){
     const { idCuber } = localStorage
+    const publication = publications[publications.map(item => item.idPublication).indexOf(idPublication)]
+    const index = publications.map(item => item.idPublication).indexOf(idPublication)
+    const indexFollow = publicationsFollow.map(item => item.idPublication).indexOf(idPublication)
 
-    let publication = isFollow ? publicationsFollow[indexPublication] : publications[indexPublication]
-
-    console.log(publication)
     if(publication.liked){
         fetch(`/publication/dislike`,{
             method: "DELETE",
@@ -84,12 +115,18 @@ function handleLikes(indexPublication, isFollow){
             })
         })
         .then(() => {
-            const heart = document.getElementById(`heart${indexPublication}`)
-            const likes = document.getElementById(`likesCount${indexPublication}`)
-            heart.src = "../assets/icons/heartIconOutline.png"
             publication.likes--
             publication.liked = 0
-            likes.innerHTML = publication.likes
+            if(indexFollow != -1){
+                const heartFollow = document.getElementById(`heartFollow${indexFollow}`)
+                const likesCountFollow = document.getElementById(`likesCountFollow${indexFollow}`)
+                heartFollow.src = "../assets/icons/heartIconOutline.png"
+                likesCountFollow.innerHTML = publication.likes
+            }
+            const heart = document.getElementById(`heart${index}`)
+            const likesCount = document.getElementById(`likesCount${index}`)
+            heart.src = "../assets/icons/heartIconOutline.png"
+            likesCount.innerHTML = publication.likes
         })
     } else {
         fetch(`/publication/like`,{
@@ -103,12 +140,18 @@ function handleLikes(indexPublication, isFollow){
             })
         })
         .then(() => {
-            const heart = document.getElementById(`heart${indexPublication}`)
-            const likes = document.getElementById(`likesCount${indexPublication}`)
-            heart.src = "../assets/icons/heartIconFill.png"
             publication.likes++
             publication.liked = 1
-            likes.innerHTML = publication.likes 
+            if(indexFollow != -1){
+                const heartFollow = document.getElementById(`heartFollow${indexFollow}`)
+                const likesCountFollow = document.getElementById(`likesCountFollow${indexFollow}`)
+                heartFollow.src = "../assets/icons/heartIconFill.png"
+                likesCountFollow.innerHTML = publication.likes
+            }
+            const heart = document.getElementById(`heart${index}`)
+            const likesCount = document.getElementById(`likesCount${index}`)
+            heart.src = "../assets/icons/heartIconFill.png"
+            likesCount.innerHTML = publication.likes
         })
     }
 }

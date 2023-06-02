@@ -15,9 +15,6 @@ router.delete("/delete/:idPublication", (req, res) => {
 router.get("/explore/:idPublication", (req, res) => {
     publicationController.listPublication(req, res)
 })
-router.get("/followed/:idCuber", (req, res) => {
-    publicationController.listFollowedPublication(req, res)
-})
 router.post("/like", (req, res) => {
     publicationController.addLike(req, res)
 })

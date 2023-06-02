@@ -38,14 +38,6 @@ function listPublication(req, res){
             res.status(200).json({publications: response})
         })
 }
-function listFollowedPublication(req, res){
-    const { idCuber } = req.params
-
-    publicationModel.listFollowedPublication(idCuber)
-        .then(response => {
-            res.status(200).json({publications: response})
-        })
-}
 function addLike(req,res){
     const { idPublication, idCuber } = req.body
 
@@ -76,7 +68,6 @@ module.exports = {
     update,
     deletePublication,
     listPublication,
-    listFollowedPublication,
     addLike,
     removeLike,
     likesByDate
