@@ -9,7 +9,8 @@ window.onload = () => {
         const contentFollowing = document.getElementById("contentFollow")
 
         const userImg = document.getElementById("divUserImg")
-        userImg.onclick = () => navigate(idCuber)
+        userImg.href = "#"
+        userImg.onclick = () => Options()
 
         fetch(`/publication/followed/${idCuber}`)
         .then(async res => {
@@ -62,11 +63,6 @@ function loadPublications(publications, content){
         }
         content.appendChild(divRow)
     }
-}
-
-function navigate(idCuber){
-    localStorage.navigateId = idCuber
-    window.location.href = "/profile.html" 
 }
 
 function handleLikes(indexPublication){

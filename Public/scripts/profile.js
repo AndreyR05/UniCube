@@ -13,7 +13,8 @@ window.onload = async () => {
         const btnFollow = document.getElementById("btnFollow")
 
         btnFollow.style.display = "none"
-        userImg.onclick = () => navigate(idCuber)
+        userImg.href = "#"
+        userImg.onclick = () => Options()
 
         renderUser(idCuber, false)
 
@@ -151,11 +152,6 @@ chartElement.addEventListener("wheel",(e) => {
     }
     chart.update()
 })
-
-function navigate(idCuber){
-    localStorage.navigateId = idCuber
-    window.location.href = "/profile.html"
-}
 
 async function renderUser(idCuber, isVisitor){
     const username = document.getElementById("username")

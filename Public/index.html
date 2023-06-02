@@ -19,9 +19,23 @@
         <div class="divOptions">
             <a href="/">Início</a>
             <a href="/explore.html">Explorar</a>
-            <a class="divUser" href="register.html" id="divUserImg">
-                <img src="assets/icons/userIcon.png" alt="Icone Usuário">
-            </a>
+            <div class="divNavContUser">
+                <a class="divUserImg" href="register.html" id="divUserImg">
+                    <img src="assets/icons/userIcon.png" alt="Icone Usuário">
+                </a>
+                <div class="divDropdown" id="dropdown">
+                    <a class="divDropdownRow" onclick="navigate()">
+                        <img src="assets/icons/userOptionIcon.png">
+                        <div></div>
+                        <p>Perfil</p>
+                    </a>
+                    <a class="divDropdownRow" onclick="exitToAccount()">
+                        <img src="assets/icons/LogoutIcon.png">
+                        <div></div>
+                        <p>Sair</p>
+                    </a>
+                </div>
+            </div>
         </div>
     </div>
     <div class="divMain">
@@ -156,6 +170,6 @@
         </div>
         <img class="logoFooter" src="assets/imgs/logo.svg">
     </div>
-    <!-- <script src="scripts/navbar.js"></script> -->
+    <script src="scripts/navbar.js"></script>
 </body>
 </html>

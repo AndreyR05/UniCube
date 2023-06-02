@@ -25,8 +25,11 @@
     font-size: 30px;
     font-weight: 800;
 }
-
-.divUser{
+.divContUser{
+    position: relative;
+}
+.divNavContUser{
+    position: relative;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -34,4 +37,34 @@
     height: 40px;
     border: 3px solid #f0f0f0;
     border-radius: 25px;
+}
+.divDropdown{
+    display: none;
+    position: absolute;
+    top: 50px;
+    right: 20px;
+    flex-direction: column;
+    gap: 5px;
+    padding: 10px 15px;
+    border-radius: 5px 0 5px 5px;
+    background: #2563EB;
+}
+.divDropdownRow{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.divDropdownRow > div{
+    width: 2px;
+    height: 15px;
+    border-radius: 2px;
+    background: #f0f0f0
+}
+.divDropdownRow > p{
+    font-size: 25px;
+    font-weight: 700px;
+    color:#f0f0f0
+}
+.divDropdownRow > img{
+    width: 25px;
 }
