@@ -415,22 +415,33 @@ function createPublication(){
     const title = document.getElementById("iptTitle")
     const desc = document.getElementById("iptDesc")
 
-    fetch(`/publication/create/${idCuber}`,{
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-            title: title.value,
-            desc: desc.value
+    if(!title.value || !desc.value){
+        alert("Campos não preenchidos")
+    }
+    else if(title.value.length > 50){
+        alert("O titulo pode ter no máximo 50 caracteres")
+    }
+    else if(desc.value.length > 1000){
+        alert("A descrição pode ter no máximo 50 caracteres")
+    }
+    else{
+        fetch(`/publication/create/${idCuber}`,{
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                title: title.value,
+                desc: desc.value
+            })
         })
-    })
-    .then(() => {
-        title.value = ""
-        desc.value = ""
-        renderUser(idCuber)
-        closeModal()
-    })
+        .then(() => {
+            title.value = ""
+            desc.value = ""
+            renderUser(idCuber)
+            closeModal()
+        })
+    }
 }
 
 function showEdit(indexPublication){
@@ -461,23 +472,33 @@ function updatePublication(indexPublication){
     const desc = document.getElementById("iptDescUpdate")
 
     const publication = user.publications[indexPublication]
-
-    fetch(`/publication/update/${publication.idPublication}`,{
-        method: 'PUT',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-            title: title.value,
-            desc: desc.value
+    if(!title.value || !desc.value){
+        alert("Campos não preenchidos")
+    }
+    else if(title.value.length > 50){
+        alert("O titulo pode ter no máximo 50 caracteres")
+    }
+    else if(desc.value.length > 1000){
+        alert("A descrição pode ter no máximo 50 caracteres")
+    }
+    else{
+        fetch(`/publication/update/${publication.idPublication}`,{
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                title: title.value,
+                desc: desc.value
+            })
         })
-    })
-    .then((res) => {
-        title.value = ""
-        desc.value = ""
-        renderUser(idCuber)
-        closeEdit()
-    })
+        .then((res) => {
+            title.value = ""
+            desc.value = ""
+            renderUser(idCuber)
+            closeEdit()
+        })
+}
 }
 function deletePublication(indexPublication){
     const { idCuber } = localStorage
