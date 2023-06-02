@@ -14,6 +14,7 @@ CREATE TABLE Publication(
     titlePublication VARCHAR(50),
     contentPublication VARCHAR(1000),
     imageUrl VARCHAR(50),
+    datePublication DATE,
     fkCuber INT,
     FOREIGN KEY (fkCuber) REFERENCES Cuber(idCuber)
 );

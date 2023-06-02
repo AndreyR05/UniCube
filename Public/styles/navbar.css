@@ -53,6 +53,7 @@
     display: flex;
     align-items: center;
     gap: 10px;
+    cursor: pointer;
 }
 .divDropdownRow > div{
     width: 2px;
