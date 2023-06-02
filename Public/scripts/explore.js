@@ -1,5 +1,6 @@
 let exploreSection = 0
 let publications = []
+let publicationsFollow = []
 
 
 window.onload = () => {
@@ -16,19 +17,20 @@ window.onload = () => {
         fetch(`/publication/followed/${idCuber}`)
         .then(async res => {
             const publicationsJson = (await res.json()).publications
-            loadPublications(publicationsJson, contentFollowing)
+            publicationsFollow = publicationsJson
+            loadPublications(publicationsJson, contentFollowing, true)
         })
 
         fetch(`/publication/explore/${idCuber}`)
         .then(async res => {
             const publicationsJson = (await res.json()).publications
             publications = publicationsJson
-            loadPublications(publicationsJson, contentExplore)
+            loadPublications(publicationsJson, contentExplore, false)
         })
     }
 }
 
-function loadPublications(publications, content){
+function loadPublications(publications, content,isFollow){
     for(let i = 0; i < publications.length / 3; i++){
         let items = 3
         if(i >= publications.length / 3 - 1 &&  publications.length % 3 != 0){
@@ -47,7 +49,7 @@ function loadPublications(publications, content){
                             </div>
                             <p>${publications[i*3+j].nameCuber}</p>
                         </div>
-                        <button class="btnLike" onclick="handleLikes(${i*3+j})">
+                        <button class="btnLike" onclick="handleLikes(${i*3+j},${isFollow})">
                             <p id="likesCount${i*3+j}" class="txtLike">${publications[i*3+j].likes}</p>
                             <img id="heart${i*3+j}" src="${publications[i*3+j].liked ? "../assets/icons/heartIconFill.png" : "../assets/icons/heartIconOutline.png"}">
                         </button>
@@ -64,10 +66,12 @@ function loadPublications(publications, content){
     }
 }
 
-function handleLikes(indexPublication){
+function handleLikes(indexPublication, isFollow){
     const { idCuber } = localStorage
-    const publication = publications[indexPublication]
 
+    let publication = isFollow ? publicationsFollow[indexPublication] : publications[indexPublication]
+
+    console.log(publication)
     if(publication.liked){
         fetch(`/publication/dislike`,{
             method: "DELETE",
