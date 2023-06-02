@@ -19,7 +19,7 @@ window.onload = async () => {
         renderUser(idCuber, false)
 
         chart = new Chart(canvas, {
-            type: 'line',
+            type: 'bar',
             data: {
                 labels: [],
                 datasets: [{
