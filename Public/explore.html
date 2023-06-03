@@ -13,6 +13,32 @@
     <link rel="stylesheet" href="../styles/explore.css">
 </head>
 <body>
+    <div class="divModalPost" id="modalPost">
+        <div class="divModalCard">
+            <div class="closeModal" onclick="closeModal()">
+                <img src="assets/icons/xRedIcon.png">
+            </div>
+            <img class="imgModal" src="../assets/imgs/octahedron.png">
+            <div class="divContentModal">
+                <div class="divTitleCard">
+                    <div class="divUserCard" id="divUserModal">
+                        <div class="imgUserCard">
+                            <img src="../assets/icons/userIcon.png">
+                        </div>
+                        <p id="nameUserModal"></p>
+                    </div>
+                    <button class="btnLike" id="btnLikes">
+                        <p id="likesCountModal" class="txtLike">2</p>
+                        <img id="heartModal" src="../assets/icons/heartIconFill.png">
+                    </button>
+                </div>
+                <div class="divModalText">
+                    <p id="titleModal"></p>
+                    <p id="contentModal"></p>
+                </div>
+            </div>
+        </div>
+    </div>
     <div class="divNavbar divNavbarBackground">
         <img src="../assets/imgs/logo.svg" alt="Logo UniCube" class="imgNavbar">
         <div class="divOptions">

@@ -56,6 +56,9 @@ function loadPublications(publications){
                         <p class="txtTitleContent">${publications[i*3+j].titlePublication}</p>
                         <p class="txtContent">${publications[i*3+j].contentPublication}</p>
                     </div>
+                    <div class="showMore" onclick="modalInfo(${publications[i*3+j].idPublication})">
+                        <p>Ver mais</p>
+                    </div>
                 </div>
             `
         }
@@ -90,10 +93,108 @@ function loadPublications(publications){
                         <p class="txtTitleContent">${publicationsFollow[i*3+j].titlePublication}</p>
                         <p class="txtContent">${publicationsFollow[i*3+j].contentPublication}</p>
                     </div>
+                    <div class="showMore" onclick="modalInfo(${publications[i*3+j].idPublication})">
+                        <p>Ver mais</p>
+                    </div>
                 </div>
             `
         }
         contentFollowing.appendChild(divRow)
+    }
+}
+
+function modalInfo(idPublication){
+    const modalPost = document.getElementById("modalPost")
+    const nameUser = document.getElementById("nameUserModal")
+    const likesCount = document.getElementById("likesCountModal")
+    const heart = document.getElementById("heartModal")
+    const title = document.getElementById("titleModal")
+    const content = document.getElementById("contentModal")
+    const btnLikes = document.getElementById("btnLikes")
+    const userModal = document.getElementById("divUserModal")
+
+    modalPost.style.display = "flex"
+
+    const publication = publications[publications.map(item => item.idPublication).indexOf(idPublication)]
+    
+    nameUser.innerHTML = publication.nameCuber
+    likesCount.innerHTML = publication.likes
+    heart.src = publication.liked ? "../assets/icons/heartIconFill.png" : "../assets/icons/heartIconOutline.png"
+    title.innerHTML = publication.titlePublication
+    content.innerHTML = publication.contentPublication
+    btnLikes.onclick = () => handleLikesModal(publication.idPublication)
+    userModal.onclick = () => navigate(publication.fkCuber)
+}
+
+function closeModal(){
+    const modalPost = document.getElementById("modalPost")
+    modalPost.style.display = "none"
+}
+
+function handleLikesModal(idPublication){
+    const { idCuber } = localStorage
+    const publication = publications[publications.map(item => item.idPublication).indexOf(idPublication)]
+    const index = publications.map(item => item.idPublication).indexOf(idPublication)
+    const indexFollow = publicationsFollow.map(item => item.idPublication).indexOf(idPublication)
+
+    if(publication.liked){
+        fetch(`/publication/dislike`,{
+            method: "DELETE",
+            headers: {
+                "Content-Type": 'application/json'
+            },
+            body: JSON.stringify({
+                idPublication: publication.idPublication,
+                idCuber: idCuber
+            })
+        })
+        .then(() => {
+            publication.likes--
+            publication.liked = 0
+            if(indexFollow != -1){
+                const heartFollow = document.getElementById(`heartFollow${indexFollow}`)
+                const likesCountFollow = document.getElementById(`likesCountFollow${indexFollow}`)
+                heartFollow.src = "../assets/icons/heartIconOutline.png"
+                likesCountFollow.innerHTML = publication.likes
+            }
+            const heart = document.getElementById(`heart${index}`)
+            const likesCount = document.getElementById(`likesCount${index}`)
+            const heartModal = document.getElementById(`heartModal`)
+            const likesCountModal = document.getElementById(`likesCountModal`)
+            heart.src = "../assets/icons/heartIconOutline.png"
+            likesCount.innerHTML = publication.likes
+            heartModal.src = "../assets/icons/heartIconOutline.png"
+            likesCountModal.innerHTML = publication.likes
+        })
+    } else {
+        fetch(`/publication/like`,{
+            method: "POST",
+            headers: {
+                "Content-Type": 'application/json'
+            },
+            body: JSON.stringify({
+                idPublication: publication.idPublication,
+                idCuber: idCuber
+            })
+        })
+        .then(() => {
+            publication.likes++
+            publication.liked = 1
+            if(indexFollow != -1){
+                const heartFollow = document.getElementById(`heartFollow${indexFollow}`)
+                const likesCountFollow = document.getElementById(`likesCountFollow${indexFollow}`)
+                heartFollow.src = "../assets/icons/heartIconFill.png"
+                likesCountFollow.innerHTML = publication.likes
+            }
+            const heart = document.getElementById(`heart${index}`)
+            const likesCount = document.getElementById(`likesCount${index}`)
+            const heartModal = document.getElementById(`heartModal`)
+            const likesCountModal = document.getElementById(`likesCountModal`)
+            heartModal.src = "../assets/icons/heartIconFill.png"
+            likesCountModal.innerHTML = publication.likes
+            heart.src = "../assets/icons/heartIconFill.png"
+            likesCount.innerHTML = publication.likes
+        })
     }
 }
 
