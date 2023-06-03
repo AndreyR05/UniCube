@@ -175,7 +175,8 @@ async function renderUser(idCuber, isVisitor){
     following.innerHTML = user.followingCuber
     publication.innerHTML = user.publicationsCuber
     countItems.innerHTML = user.cubesCuber
-    for(let i = 0; i < 3; i++){
+    const cubesNumCard = user.cubesCuber > 3 ? 3 : user.cubesCuber
+    for(let i = 0; i < cubesNumCard; i++){
         itemsUser.innerHTML +=`<div class="divCollectionItem">
             <img src="../assets/imgs/octahedron.png" alt="">
         </div>`

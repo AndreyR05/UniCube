@@ -77,6 +77,7 @@ body{
 .divCollection{
     display: flex;
     flex-direction: column;
+    width: 100%;
     max-width: 400px;
     overflow: hidden;
     gap: 10px;
@@ -98,9 +99,11 @@ body{
 .divCollectionItems{
     display: flex;
     gap: 10px;
+    height: 100px;
 }
 .divCollectionItem{
     min-width: 100px;
+    max-width: 100px;
     height: 100px;
     background: #262626;
     border-radius: 5px;
