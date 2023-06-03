@@ -314,6 +314,9 @@ function editCube(idCube){
     if(!inputName.value || !inputRarity.value){
         alert("Campos não preenchidos")
     }
+    else if(inputName.value.length > 50){
+        alert("O nome pode ter no máximo 50 caracteres")
+    }
     else{
         fetch(`/cubes/update/${idCuber}`,{
             method: "PUT",
@@ -377,6 +380,9 @@ function createCube(){
     if(!name.value || !rarity.value){
         alert("Campos não preenchidos")
     }
+    else if(name.value.length > 50){
+        alert("O nome pode ter no máximo 50 caracteres")
+    }
     else{
         fetch(`/cubes/create/${idCuber}`,{
             method: "POST",
@@ -422,7 +428,7 @@ function createPublication(){
         alert("O titulo pode ter no máximo 50 caracteres")
     }
     else if(desc.value.length > 1000){
-        alert("A descrição pode ter no máximo 50 caracteres")
+        alert("A descrição pode ter no máximo 1000 caracteres")
     }
     else{
         fetch(`/publication/create/${idCuber}`,{
@@ -479,7 +485,7 @@ function updatePublication(indexPublication){
         alert("O titulo pode ter no máximo 50 caracteres")
     }
     else if(desc.value.length > 1000){
-        alert("A descrição pode ter no máximo 50 caracteres")
+        alert("A descrição pode ter no máximo 1000 caracteres")
     }
     else{
         fetch(`/publication/update/${publication.idPublication}`,{
