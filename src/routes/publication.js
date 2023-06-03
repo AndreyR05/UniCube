@@ -24,5 +24,7 @@ router.delete("/dislike",(req, res) => {
 router.get("/:idPublication/likes", (req, res) => {
     publicationController.likesByDate(req, res)
 })
-
+router.get("/mostLikedInMonth",(req,res) =>{
+    publicationController.mostLikedMonth(req,res)
+})
 module.exports = router

@@ -62,6 +62,12 @@ function likesByDate(req, res){
             res.status(200).json({likes: response})
         })
 }
+function mostLikedMonth(req, res){
+    publicationModel.mostLikedMonth()
+        .then(response => {
+            res.status(200).json({publications: response})
+        })
+}
 
 module.exports = {
     create,
@@ -70,5 +76,6 @@ module.exports = {
     listPublication,
     addLike,
     removeLike,
-    likesByDate
+    likesByDate,
+    mostLikedMonth
 }

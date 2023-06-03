@@ -1,13 +1,3 @@
-window.onload = () => {
-    const { idCuber } = localStorage
-
-    if(idCuber){
-        const userImg = document.getElementById("divUserImg")
-        userImg.href = "#"
-        userImg.onclick = () => Options()
-    }
-}
-
 function Options(){
     const dropdown = document.getElementById("dropdown")
     dropdown.style.display = "flex"

@@ -92,6 +92,25 @@ function likesByDate(idPublication){
     return database.executar(sql)
 }
 
+function mostLikedMonth(){
+    const sql = `
+        SELECT
+            *, 
+            CASE WHEN EXISTS (SELECT * FROM Likes l WHERE l.fkCuber = 3 and l.fkPublication = p.idPublication)
+                THEN true
+                ELSE false
+            END "liked"
+        FROM Publication p
+        JOIN Cuber c ON p.fkCuber = c.idCuber 
+        LEFT JOIN 
+            (SELECT COUNT(*) likes, fkPublication FROM Likes l GROUP BY l.fkPublication) l 
+            ON p.idPublication = l.fkPublication
+        WHERE YEAR(NOW()) = YEAR(p.datePublication) AND MONTH(NOW()) =  MONTH(p.datePublication)
+        ORDER BY l.likes DESC LIMIT 3;
+    `
+    return database.executar(sql)
+}
+
 module.exports = {
     create,
     update,
@@ -100,5 +119,6 @@ module.exports = {
     removeLikesPublication,
     addLike,
     removeLike,
-    likesByDate
+    likesByDate,
+    mostLikedMonth
 }

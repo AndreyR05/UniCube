@@ -343,9 +343,34 @@ body{
     font-size: 20px;
     color: #f0f0f0;
     font-weight: 700;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 .txtContent{
     font-size: 15px;
-    color: #f0f0f0;
     font-weight: 700;
+    color: #F0F0F0;
+    text-align: justify;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    white-space: pre-wrap;
+}
+.btnLike{
+    display: flex;
+    background: none;
+    gap: 5px;
+    width: 35px;
+    height: min-content;
+}
+.txtLike{
+    font-size: 15px;
+    font-weight: 700;
+    color: #F0F0F0;
+}
+.btnLike > img{
+    width: 100%;
+
 }
