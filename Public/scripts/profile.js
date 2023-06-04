@@ -614,3 +614,18 @@ function changeScreen(form){
         }
     }
 }
+
+function allowDrop(e) {
+    e.preventDefault();
+    e.dataTransfer.setData("text", e.target.id);
+}
+function handlerDrop(e,iptName){
+    e.preventDefault()
+    const ipt = document.getElementById(iptName)
+    const file = e.dataTransfer.files[0]
+    const reader = new FileReader();
+    reader.onload = function(event) {
+        ipt.src= event.target.result;
+    };
+    reader.readAsDataURL(file);
+}
