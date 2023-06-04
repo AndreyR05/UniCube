@@ -27,12 +27,13 @@ window.onload = async () => {
                     data: [],
                     fill: false,
                     borderColor: '#DC2626',
-                    borderWidth: 5,
+                    borderWidth: 0,
                     pointBorderWidth: 0,
                     tension: .4
                 }]
             },
             options: {
+                borderRadius: 5,
                 scales: {
                     y: {
                         grid: {
@@ -104,7 +105,17 @@ async function likesByDate(idPublication){
         const data = labels.map(item => {
             const labelIndex = datesValues.indexOf(item)
             if(labelIndex != -1){
-                return values[labelIndex]
+                const color = 
+                    values[labelIndex] > 100
+                    ? '#84CC16' 
+                    : values[labelIndex] > 50
+                    ? '#3B82F6'
+                    : '#DC2626'
+
+                return {
+                    values: values[labelIndex],
+                    color: color
+                }
             }
             return 0
         })
@@ -114,10 +125,10 @@ async function likesByDate(idPublication){
             chart.options.scales.x.max = data.length
         }else{
             chart.options.scales.x.min = data.length-6
-            chart.options.scales.x.max = data.length
+            chart.options.scales.x.max = data.length-1
         }
-        console.log(data)
-        chart.data.datasets[0].data = data
+        chart.data.datasets[0].backgroundColor = data.map(item => item.color)
+        chart.data.datasets[0].data = data.map(item => item.values)
         chart.data.labels = labels
         chart.update()
     }else{
