@@ -109,7 +109,7 @@ async function likesByDate(idPublication){
                     values[labelIndex] > 100
                     ? '#84CC16' 
                     : values[labelIndex] > 50
-                    ? '#3B82F6'
+                    ? '#2563EB'
                     : '#DC2626'
 
                 return {
