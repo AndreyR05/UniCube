@@ -4,8 +4,9 @@ function create(req, res){
     const idCuber = req.params.idCuber
     const title = req.body.title
     const desc = req.body.desc
+    const imagePath = req.file.filename;
 
-    publicationModel.create(title, desc, idCuber)
+    publicationModel.create(title, desc, imagePath, idCuber)
         .then(response => {
             console.log(response)
             res.status(200).json({msg: "Publicação criada com sucesso"})

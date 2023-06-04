@@ -1,9 +1,10 @@
+const upload = require("../upload/config")
 const express = require("express")
 const router =  express.Router()
 
 const publicationController = require("../controllers/publicationController")
 
-router.post("/create/:idCuber",(req, res) => {
+router.post("/create/:idCuber", upload.single('image'),(req, res) => {
     publicationController.create(req, res)
 })
 router.put("/update/:idPublication", (req, res) => {

@@ -207,7 +207,7 @@ async function renderUser(idCuber, isVisitor){
             if(isVisitor != true){
                 divRow.innerHTML += `
                     <div class="divCard">
-                        <img class="imgCover" src="../assets/imgs/octahedron.png">
+                        <img class="imgCover" src="../assets/site/${user.publications[i*5+j].imageUrl}">
                         <div class="divContentCard">
                             <p class="txtTitleContent">${user.publications[i*5+j].titlePublication}</p>
                             <div class="divRowData">
@@ -432,7 +432,9 @@ function createPublication(){
 
     const title = document.getElementById("iptTitle")
     const desc = document.getElementById("iptDesc")
+    const image = document.getElementById("iptFile")
 
+    console.log(image.files[0])
     if(!title.value || !desc.value){
         alert("Campos não preenchidos")
     }
@@ -443,15 +445,14 @@ function createPublication(){
         alert("A descrição pode ter no máximo 1000 caracteres")
     }
     else{
+        const f = new FormData()
+        f.append('image', image.files[0])
+        f.append('title', title.value)
+        f.append('desc', desc.value)
+
         fetch(`/publication/create/${idCuber}`,{
             method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-                title: title.value,
-                desc: desc.value
-            })
+            body: f
         })
         .then(() => {
             title.value = ""

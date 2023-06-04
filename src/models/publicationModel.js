@@ -1,11 +1,11 @@
 const database = require("../database/config")
 
-function create(title, titlePublication, idCuber){
+function create(title, titlePublication, imageName, idCuber){
     const sql = `
         INSERT INTO
-            Publication (titlePublication, contentPublication, fkCuber, datePublication)
+            Publication (titlePublication, contentPublication, imageUrl, fkCuber, datePublication)
         VALUES
-            ('${title}', '${titlePublication}', ${idCuber}, DATE(NOW()));
+            ('${title}', '${titlePublication}','${imageName}', ${idCuber}, DATE(NOW()));
     `
 
     return database.executar(sql)
