@@ -394,7 +394,7 @@ function createCube(){
     const rarity = document.getElementById("iptRarity")
     const image = document.getElementById("iptFileCube")
 
-    if(!name.value || !rarity.value){
+    if(!name.value || !rarity.value || !image.files[0]){
         alert("Campos não preenchidos")
     }
     else if(name.value.length > 50){
@@ -438,7 +438,7 @@ function createPublication(){
     const desc = document.getElementById("iptDesc")
     const image = document.getElementById("iptFilePublication")
 
-    if(!title.value || !desc.value){
+    if(!title.value || !desc.value || !image.files[0]){
         alert("Campos não preenchidos")
     }
     else if(title.value.length > 50){
