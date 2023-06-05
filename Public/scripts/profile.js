@@ -71,7 +71,8 @@ window.onload = async () => {
         }
 
         btnNewPublication.style.display = "none"
-        userImg.onclick = () => navigate(idCuber)
+        userImg.href = "#"
+        userImg.onclick = () => Options()
 
         renderUser(navigateId, true)
     }
