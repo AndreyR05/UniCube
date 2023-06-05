@@ -193,7 +193,7 @@ async function renderUser(idCuber, isVisitor){
     const cubesNumCard = user.cubesCuber > 3 ? 3 : user.cubesCuber
     for(let i = 0; i < cubesNumCard; i++){
         itemsUser.innerHTML +=`<div class="divCollectionItem">
-            <img src="../assets/imgs/octahedron.png" alt="">
+            <img src="../assets/site/${user.cubes[i].imageUrl}" alt="">
         </div>`
     }
 
