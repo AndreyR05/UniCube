@@ -168,7 +168,7 @@ body{
     white-space: pre-wrap;
 }
 .divModalPost{
-    position: absolute;
+    position: fixed;
     z-index: 100;
     background-color: #17171774;
     display: none;

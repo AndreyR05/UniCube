@@ -18,10 +18,8 @@ window.onload = async () => {
 
 function loadCards(res){
     const contCards = document.getElementById("contCards")
-    console.log(res.publications.length, contCards)
     contCards.innerHTML += ""
     for(let i = 0; i < res.publications.length; i++){
-        console.log(res)
         contCards.innerHTML += `
             <div class="divCard">
                 <div class="divTitleCard">
