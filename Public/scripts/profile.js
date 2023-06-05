@@ -641,11 +641,18 @@ function allowDrop(e) {
     e.dataTransfer.setData("text", e.target.id);
 }
 function handlerDrop(e,iptName){
-    e.preventDefault()
+    e.preventDefault() 
     const img = document.getElementById(`iptImg${iptName}`)
     const ipt = document.getElementById(`iptFile${iptName}`)
     
     const file = e.dataTransfer ? e.dataTransfer.files[0] : ipt.files[0]
+    
+    if(e.dataTransfer){
+        const dt = new DataTransfer()
+        dt.items.add(file)
+        ipt.files = dt.files
+    }
+
     const reader = new FileReader();
     reader.onload = function(event) {
         img.src= event.target.result;
