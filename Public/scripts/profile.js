@@ -275,7 +275,7 @@ async function renderUser(idCuber, isVisitor){
                 else{
                     divRow.innerHTML += `
                         <div class="divCollectionContentItems">
-                            <img src="assets/imgs/octahedron.png" alt="">
+                            <img src="assets/site/${user.cubes[i*4+j].imageUrl}" alt="">
                             <div class="itemInfo">
                                 <p class="txtNameItem">${user.cubes[i*4+j].nameCube}</p>
                                 <img class="rarity" src="assets/icons/rarity${rarity}.png" title="${user.cubes[i*4+j].rarity}">

@@ -232,6 +232,8 @@ body{
 .divCollectionContentItems > img {
     border-radius: 2.5px;
     width: 100%;
+    height: 300px;
+    object-fit: cover;
 }
 .divCollectionContentItems > .imgNewCube {
     width: 50%;
