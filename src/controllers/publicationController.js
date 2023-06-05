@@ -64,7 +64,8 @@ function likesByDate(req, res){
         })
 }
 function mostLikedMonth(req, res){
-    publicationModel.mostLikedMonth()
+    const { idCuber } = req.params
+    publicationModel.mostLikedMonth(idCuber)
         .then(response => {
             res.status(200).json({publications: response})
         })

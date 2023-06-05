@@ -92,11 +92,13 @@ function likesByDate(idPublication){
     return database.executar(sql)
 }
 
-function mostLikedMonth(){
+function mostLikedMonth(idCuber){
     const sql = `
         SELECT
-            *, 
-            CASE WHEN EXISTS (SELECT * FROM Likes l WHERE l.fkCuber = 3 and l.fkPublication = p.idPublication)
+            c.nameCuber,
+            p.*,
+            l.*, 
+            CASE WHEN EXISTS (SELECT * FROM Likes l WHERE l.fkCuber = ${idCuber} and l.fkPublication = p.idPublication)
                 THEN true
                 ELSE false
             END "liked"

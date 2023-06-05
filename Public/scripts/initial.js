@@ -8,7 +8,7 @@ window.onload = async () => {
         userImg.href = "#"
         userImg.onclick = () => Options()
     }
-    fetch("/publication/mostLikedInMonth")
+    fetch(`/publication/mostLikedInMonth/${idCuber}`)
     .then(res => res.json())
     .then(res => {
         publications = res.publications
@@ -21,7 +21,7 @@ function loadCards(res){
     console.log(res.publications.length, contCards)
     contCards.innerHTML += ""
     for(let i = 0; i < res.publications.length; i++){
-        console.log("opa")
+        console.log(res)
         contCards.innerHTML += `
             <div class="divCard">
                 <div class="divTitleCard">
@@ -36,7 +36,7 @@ function loadCards(res){
                         <img id="heart${i}" src="${res.publications[i].liked ? "../assets/icons/heartIconFill.png" : "../assets/icons/heartIconOutline.png"}">
                     </button>
                 </div>
-                <img class="imgCover" src="../assets/imgs/octahedron.png">
+                <img class="imgCover" src="../assets/site/${res.publications[i].imageUrl}">
                 <div class="divContentCard">
                     <p class="txtTitleContent">${res.publications[i].titlePublication}</p>
                     <p class="txtContent">${res.publications[i].contentPublication}</p>
