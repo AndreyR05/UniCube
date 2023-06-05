@@ -437,6 +437,7 @@ function createPublication(){
     const title = document.getElementById("iptTitle")
     const desc = document.getElementById("iptDesc")
     const image = document.getElementById("iptFilePublication")
+    const elementImg = document.getElementById("iptImgPublication")
 
     if(!title.value || !desc.value || !image.files[0]){
         alert("Campos não preenchidos")
@@ -460,6 +461,8 @@ function createPublication(){
         .then(() => {
             title.value = ""
             desc.value = ""
+            image.files = new DataTransfer().files 
+            elementImg.src = "assets/icons/downloadIcon.png"
             renderUser(idCuber)
             closeModal()
         })
