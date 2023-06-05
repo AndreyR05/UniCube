@@ -33,6 +33,23 @@ function update(req, res){
     }
 }
 
+function updateWithImage(req, res){
+    const idCuber = req.params.idCuber
+    const { name, rarity, idCube } = req.body
+    const image = req.file.filename
+
+    if(!name || !rarity){
+        res.status(400).json({error: "Campos não preenchidos"})
+    }
+    else{
+        cubesModel.updateWithImage(name, rarity, image, idCuber, idCube)
+            .then(response => {
+                console.log(response)
+                res.status(200).json({msg: "Cubo adicionado a coleção com sucesso"})
+            })
+    }
+}
+
 function deleteCube(req, res){
     const { idCuber, idCube } = req.body
     cubesModel.deleteCube(idCuber, idCube)
@@ -44,5 +61,6 @@ function deleteCube(req, res){
 module.exports = {
     create,
     update,
+    updateWithImage,
     deleteCube
 }

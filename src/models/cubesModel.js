@@ -24,6 +24,18 @@ function update(name, rarity, idCuber, idCube){
     `
     return database.executar(sql)
 }
+function updateWithImage(name, rarity, image, idCuber, idCube){
+    const sql = `
+        UPDATE CubeCollection 
+        SET
+            nameCube = '${name}',
+            rarity = '${rarity}',
+            imageUrl = '${image}'
+        WHERE 
+            idCube = ${idCube} and fkCuber = ${idCuber};
+    `
+    return database.executar(sql)
+}
 function deleteCube(idCuber, idCube){
     const sql = `
         DELETE FROM CubeCollection WHERE idCube = ${idCube} and fkCuber = ${idCuber};
@@ -34,5 +46,6 @@ function deleteCube(idCuber, idCube){
 module.exports = {
     create,
     update,
+    updateWithImage,
     deleteCube
 }

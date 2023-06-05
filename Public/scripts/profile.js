@@ -307,11 +307,13 @@ function showEditCube(indexCube){
     const inputRarity = document.getElementById("iptRarityEdit")
     const editButton = document.getElementById("editButton")
     const btnDelete = document.getElementById("btnDeleteCube")
+    const img = document.getElementById("iptImgEditCube")
     modal.style.display = "flex"
 
-    const { idCube, nameCube, rarity } = user.cubes[indexCube]
+    const { idCube, nameCube, rarity, imageUrl } = user.cubes[indexCube]
     inputName.value = nameCube
     inputRarity.value = rarity
+    img.src = `../assets/site/${imageUrl}`
 
     editButton.onclick = () => editCube(idCube)
     btnDelete.onclick = () => deleteCube(idCube)
@@ -326,12 +328,34 @@ function editCube(idCube){
 
     const inputName = document.getElementById("iptNameEdit")
     const inputRarity = document.getElementById("iptRarityEdit")
+    const inputImg = document.getElementById("iptFileEditCube")
 
     if(!inputName.value || !inputRarity.value){
         alert("Campos não preenchidos")
     }
     else if(inputName.value.length > 50){
         alert("O nome pode ter no máximo 50 caracteres")
+    }
+    else if(inputImg.files[0]){
+        const f = new FormData()
+        f.append('idCube', idCube)
+        f.append('image', inputImg.files[0])
+        f.append('rarity', inputRarity.value)
+        f.append('name', inputName.value)
+
+        fetch(`/cubes/updateWithImage/${idCuber}`,{
+            method: "PUT",
+            body: f
+        })
+        .then(res => {
+            if(res.status == 200){
+                inputName.value = ""
+                inputRarity.value = ""
+                renderUser(idCuber)
+                closeEditCube()
+                changeScreen(1)
+            }
+        })
     }
     else{
         fetch(`/cubes/update/${idCuber}`,{
