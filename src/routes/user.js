@@ -1,3 +1,4 @@
+const upload = require("../upload/config")
 var express = require("express");
 var router = express.Router();
 
@@ -23,5 +24,7 @@ router.delete("/unfollow", (req, res) => {
 router.get("/following/:idCuber", (req, res) => {
     userController.following(req, res)
 })
-
+router.put("/changeImage/:idCuber", upload.single('image'), (req, res) => {
+    userController.changeImage(req, res)
+})
 module.exports = router;

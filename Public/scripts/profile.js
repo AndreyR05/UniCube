@@ -177,6 +177,8 @@ async function renderUser(idCuber, isVisitor){
     const itemsUser = document.getElementById("divItemsCollection")
     const divPublications = document.getElementById("divPublications")
     const divCubes = document.getElementById("divCubes")
+    const imgUser = document.getElementById("imgUser")
+    const changeImage = document.getElementById("txtChangeImg")
 
     divPublications.innerHTML = ""
     divCubes.innerHTML = ""
@@ -185,6 +187,10 @@ async function renderUser(idCuber, isVisitor){
     const res = await fetch(`/user/${idCuber}`)
     user = await res.json()
 
+    if(user.imageUrl){
+        imgUser.src = `../assets/site/${user.imageUrl}`
+        changeImage.style.display = 'none'
+    }
     username.innerHTML = user.nameCuber
     followers.innerHTML = user.followersCuber
     following.innerHTML = user.followingCuber
@@ -702,4 +708,26 @@ function handlerDrop(e,iptName){
         img.src= event.target.result;
     };
     reader.readAsDataURL(file);
+}
+function changeUserImage(){
+    const imgUser = document.getElementById("imgUser")
+    const ipt = document.getElementById("iptImgUser")
+    const changeImage = document.getElementById("txtChangeImg")
+
+    const { idCuber } = localStorage
+
+    const file = ipt.files[0]
+    changeImage.style.display = 'none'
+    const reader = new FileReader();
+    reader.onload = function(event) {
+        imgUser.src= event.target.result;
+    };
+    reader.readAsDataURL(file);
+
+    const f = new FormData()
+    f.append('image', file)
+    fetch(`/user/changeImage/${idCuber}`, {
+        method: 'PUT',
+        body: f
+    })
 }

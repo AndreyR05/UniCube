@@ -104,6 +104,17 @@ function following(req, res){
         })
 }
 
+function changeImage(req, res){
+    const { idCuber } = req.params
+    const image = req.file.filename
+    console.log(image)
+
+    userModel.changeImage(idCuber, image)
+        .then(() =>
+            res.status(200).json({msg: "image do usuário trocada"})
+        )
+}
+
 module.exports = {
     login,
     register,
@@ -111,4 +122,5 @@ module.exports = {
     follow,
     unfollow,
     following,
+    changeImage
 }

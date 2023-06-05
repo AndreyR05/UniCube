@@ -166,7 +166,11 @@
     <div class="divContent">
         <div class="divContUser">
             <div class="divUserProfile">
-                <img class="imgUser">
+                <label for="iptImgUser" class="labelUser">
+                    <p id="txtChangeImg">Trocar Foto</p>
+                    <img class="imgUser" id="imgUser">
+                </label>
+                <input type="file" id="iptImgUser" onchange="changeUserImage()">
                 <div class="divInfoUser">
                     <p class="divNameUser" id="username"></p>
                     <button class="btnFollow" id="btnFollow" onclick="follow(false)">Seguir</button>

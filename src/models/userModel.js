@@ -1,3 +1,4 @@
+
 var database = require("../database/config")
 
 function findByName(username){
@@ -102,6 +103,14 @@ function following(idCuber){
     return database.executar(sql)
 }
 
+function changeImage(idCuber, image){
+    const sql = `
+        UPDATE Cuber SET imageUrl = '${image}' WHERE idCuber = ${idCuber};
+    `
+
+    return database.executar(sql)
+}
+
 module.exports = {
     infos,
     login,
@@ -111,5 +120,6 @@ module.exports = {
     cubes,
     follow,
     unfollow,
-    following
+    following,
+    changeImage
 };
