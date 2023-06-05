@@ -239,6 +239,7 @@ body{
 }
 .divCollectionContentItems > .imgNewCube {
     width: 50%;
+    object-fit: contain;
     align-self: center;
 }
 .divCollectionContentItems > .txtNewCube {
