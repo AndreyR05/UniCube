@@ -93,7 +93,7 @@ function loadPublications(publications){
                         <p class="txtTitleContent">${publicationsFollow[i*3+j].titlePublication}</p>
                         <p class="txtContent">${publicationsFollow[i*3+j].contentPublication}</p>
                     </div>
-                    <div class="showMore" onclick="modalInfo(${publications[i*3+j].idPublication})">
+                    <div class="showMore" onclick="modalInfo(${publicationsFollow[i*3+j].idPublication})">
                         <p>Ver mais</p>
                     </div>
                 </div>
