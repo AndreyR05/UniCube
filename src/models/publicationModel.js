@@ -24,6 +24,20 @@ function update(title, content, idPublication){
     
     return database.executar(sql)
 }
+function updateWithImage(title, content, image, idPublication){
+    const sql = `
+        UPDATE 
+            Publication 
+        SET
+            titlePublication = '${title}',
+            contentPublication = '${content}',
+            imageUrl = '${image}'
+        WHERE
+            idPublication = ${idPublication};
+    `
+    
+    return database.executar(sql)
+}
 
 function deletePublication(idPublication){
     const sql = `
@@ -133,6 +147,7 @@ function mostLikedMonthDisconnected(){
 module.exports = {
     create,
     update,
+    updateWithImage,
     deletePublication,
     listPublication,
     removeLikesPublication,

@@ -21,6 +21,16 @@ function update(req, res){
             res.status(200).json({msg: "Publicação atualiazada com sucesso"})
         })
 }
+function updateWithImage(req, res){
+    const idPublication = req.params.idPublication
+    const { title, desc } = req.body
+    const image = req.file.filename
+
+    publicationModel.updateWithImage(title, desc, image, idPublication)
+        .then(response => {
+            res.status(200).json({msg: "Publicação atualiazada com sucesso"})
+        })
+}
 function deletePublication(req, res){
     const { idPublication } = req.params
 
@@ -80,6 +90,7 @@ function mostLikedMonthDisconnected(req, res){
 module.exports = {
     create,
     update,
+    updateWithImage,
     deletePublication,
     listPublication,
     addLike,

@@ -10,6 +10,9 @@ router.post("/create/:idCuber", upload.single('image'),(req, res) => {
 router.put("/update/:idPublication", (req, res) => {
     publicationController.update(req, res)
 })
+router.put("/updateWithImage/:idPublication", upload.single('image'), (req, res) => {
+    publicationController.updateWithImage(req, res)
+})
 router.delete("/delete/:idPublication", (req, res) => {
     publicationController.deletePublication(req, res)
 })

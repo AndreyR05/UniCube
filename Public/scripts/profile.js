@@ -489,12 +489,15 @@ function showEdit(indexPublication){
     const desc = document.getElementById("iptDescUpdate")
     const btnUpdate = document.getElementById("btnUpdate")
     const btnDelete = document.getElementById("btnDelete")
+    const img = document.getElementById("iptImgEditPublication")
 
     const modal = document.getElementById("modalUpdate")
     const publication = user.publications[indexPublication]
 
     title.value = publication.titlePublication
     desc.value = publication.contentPublication
+    img.src = `../assets/site/${publication.imageUrl}`
+
     btnUpdate.onclick = () => updatePublication(indexPublication)
     btnDelete.onclick = () => deletePublication(indexPublication)
 
@@ -510,6 +513,7 @@ function updatePublication(indexPublication){
 
     const title = document.getElementById("iptTitleUpdate")
     const desc = document.getElementById("iptDescUpdate")
+    const image = document.getElementById("iptFileEditPublication")
 
     const publication = user.publications[indexPublication]
     if(!title.value || !desc.value){
@@ -521,11 +525,28 @@ function updatePublication(indexPublication){
     else if(desc.value.length > 1000){
         alert("A descrição pode ter no máximo 1000 caracteres")
     }
-    else{
+    else if(image.files[0]){
+        const f = new FormData()
+        f.append('image', image.files[0])
+        f.append('title', title.value)
+        f.append('desc', desc.value)
+
+        fetch(`/publication/updateWithImage/${publication.idPublication}`,{
+            method: 'PUT',
+            body: f
+        })
+        .then((res) => {
+            title.value = ""
+            desc.value = ""
+            renderUser(idCuber)
+            closeEdit()
+        })
+    } else {
+
         fetch(`/publication/update/${publication.idPublication}`,{
             method: 'PUT',
             headers: {
-                'Content-Type': 'application/json'
+                "Content-Type": 'application/json'
             },
             body: JSON.stringify({
                 title: title.value,
@@ -538,7 +559,7 @@ function updatePublication(indexPublication){
             renderUser(idCuber)
             closeEdit()
         })
-}
+    }
 }
 function deletePublication(indexPublication){
     const { idCuber } = localStorage
@@ -652,7 +673,6 @@ function handlerDrop(e,iptName){
         dt.items.add(file)
         ipt.files = dt.files
     }
-
     const reader = new FileReader();
     reader.onload = function(event) {
         img.src= event.target.result;
