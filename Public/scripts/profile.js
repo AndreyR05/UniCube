@@ -228,7 +228,7 @@ async function renderUser(idCuber, isVisitor){
             else {
                 divRow.innerHTML += `
                     <div class="divCard">
-                        <img class="imgCover" src="../assets/imgs/octahedron.png">
+                        <img class="imgCover" src="../assets/site/${user.publications[i*5+j].imageUrl}">
                         <div class="divContentCard">
                             <p class="txtTitleContent">${user.publications[i*5+j].titlePublication}</p>
                             <div class="divRowData">

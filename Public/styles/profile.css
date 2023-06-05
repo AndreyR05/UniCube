@@ -303,6 +303,8 @@ body{
 }
 .imgCover{
     width: 100%;
+    object-fit: cover;
+    height: 200px;
 }
 .divContentCard{
     display: flex;
