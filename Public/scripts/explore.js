@@ -51,7 +51,7 @@ function loadPublications(publications){
                             <img id="heart${i*3+j}" src="${publications[i*3+j].liked ? "../assets/icons/heartIconFill.png" : "../assets/icons/heartIconOutline.png"}">
                         </button>
                     </div>
-                    <img class="imgCover" src="../assets/imgs/octahedron.png">
+                    <img class="imgCover" src="../assets/site/${publications[i*3+j].imageUrl}">
                     <div class="divContentCard">
                         <p class="txtTitleContent">${publications[i*3+j].titlePublication}</p>
                         <p class="txtContent">${publications[i*3+j].contentPublication}</p>
@@ -88,7 +88,7 @@ function loadPublications(publications){
                             <img id="heartFollow${i*3+j}" src="${publicationsFollow[i*3+j].liked ? "../assets/icons/heartIconFill.png" : "../assets/icons/heartIconOutline.png"}">
                         </button>
                     </div>
-                    <img class="imgCover" src="../assets/imgs/octahedron.png">
+                    <img class="imgCover" src="../assets/site/${publicationsFollow[i*3+j].imageUrl}">
                     <div class="divContentCard">
                         <p class="txtTitleContent">${publicationsFollow[i*3+j].titlePublication}</p>
                         <p class="txtContent">${publicationsFollow[i*3+j].contentPublication}</p>
@@ -112,6 +112,7 @@ function modalInfo(idPublication){
     const content = document.getElementById("contentModal")
     const btnLikes = document.getElementById("btnLikes")
     const userModal = document.getElementById("divUserModal")
+    const imgModal = document.getElementById("imgModal")
 
     modalPost.style.display = "flex"
 
@@ -122,6 +123,7 @@ function modalInfo(idPublication){
     heart.src = publication.liked ? "../assets/icons/heartIconFill.png" : "../assets/icons/heartIconOutline.png"
     title.innerHTML = publication.titlePublication
     content.innerHTML = publication.contentPublication
+    imgModal.src = `../assets/site/${publication.imageUrl}`
     btnLikes.onclick = () => handleLikesModal(publication.idPublication)
     userModal.onclick = () => navigate(publication.fkCuber)
 }
