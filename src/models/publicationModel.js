@@ -113,6 +113,23 @@ function mostLikedMonth(idCuber){
     return database.executar(sql)
 }
 
+function mostLikedMonthDisconnected(){
+    const sql = `
+        SELECT
+            c.nameCuber,
+            p.*,
+            l.*
+        FROM Publication p
+        JOIN Cuber c ON p.fkCuber = c.idCuber 
+        LEFT JOIN 
+            (SELECT COUNT(*) likes, fkPublication FROM Likes l GROUP BY l.fkPublication) l 
+            ON p.idPublication = l.fkPublication
+        WHERE YEAR(NOW()) = YEAR(p.datePublication) AND MONTH(NOW()) =  MONTH(p.datePublication)
+        ORDER BY l.likes DESC LIMIT 3;
+    `
+    return database.executar(sql)
+}
+
 module.exports = {
     create,
     update,
@@ -122,5 +139,6 @@ module.exports = {
     addLike,
     removeLike,
     likesByDate,
-    mostLikedMonth
+    mostLikedMonth,
+    mostLikedMonthDisconnected
 }

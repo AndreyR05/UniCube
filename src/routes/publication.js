@@ -28,4 +28,7 @@ router.get("/:idPublication/likes", (req, res) => {
 router.get("/mostLikedInMonth/:idCuber",(req,res) =>{
     publicationController.mostLikedMonth(req,res)
 })
+router.get("/initial/disconnected",(req,res) =>{
+    publicationController.mostLikedMonthDisconnected(req,res)
+})
 module.exports = router
