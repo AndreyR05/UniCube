@@ -264,7 +264,7 @@ async function renderUser(idCuber, isVisitor){
                             <button class="btnEdit" onclick="showEditCube(${i*4+j})">
                                 <img src="assets/icons/dotsIcon.png">
                             </button>
-                            <img src="assets/imgs/octahedron.png" alt="">
+                            <img src="assets/site/${user.cubes[i*4+j].imageUrl}" alt="">
                             <div class="itemInfo">
                                 <p class="txtNameItem">${user.cubes[i*4+j].nameCube}</p>
                                 <img class="rarity" src="assets/icons/rarity${rarity}.png" title="${user.cubes[i*4+j].rarity}">
@@ -388,6 +388,7 @@ function createCube(){
 
     const name = document.getElementById("iptName")
     const rarity = document.getElementById("iptRarity")
+    const image = document.getElementById("iptFileCube")
 
     if(!name.value || !rarity.value){
         alert("Campos não preenchidos")
@@ -396,15 +397,14 @@ function createCube(){
         alert("O nome pode ter no máximo 50 caracteres")
     }
     else{
+        const f = new FormData()
+        f.append('image', image.files[0])
+        f.append('rarity', rarity.value)
+        f.append('name', name.value)
+
         fetch(`/cubes/create/${idCuber}`,{
             method: "POST",
-            headers: {
-                "Content-Type":'application/json'
-            },
-            body: JSON.stringify({
-                name: name.value,
-                rarity: rarity.value
-            })
+            body: f
         })
         .then(res => {
             if(res.status == 200){

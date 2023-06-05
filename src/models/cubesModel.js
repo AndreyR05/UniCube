@@ -1,8 +1,8 @@
 const database = require("../database/config")
 
-function create(name, rarity, idCuber){
+function create(name, rarity, image, idCuber){
     const sql = `
-        INSERT INTO CubeCollection VALUES 
+        INSERT INTO CubeCollection (idCube, nameCube, rarity, imageUrl, fkCuber) VALUES 
         (
             (
                 SELECT 
@@ -12,7 +12,7 @@ function create(name, rarity, idCuber){
                     END 'LastId'
                 FROM CubeCollection cc WHERE cc.fkCuber = ${idCuber}
             ),
-            '${name}','${rarity}',${idCuber}
+            '${name}','${rarity}', '${image}', ${idCuber}
         );
     `
 
