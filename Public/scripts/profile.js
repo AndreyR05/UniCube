@@ -432,9 +432,8 @@ function createPublication(){
 
     const title = document.getElementById("iptTitle")
     const desc = document.getElementById("iptDesc")
-    const image = document.getElementById("iptFile")
+    const image = document.getElementById("iptFilePublication")
 
-    console.log(image.files[0])
     if(!title.value || !desc.value){
         alert("Campos não preenchidos")
     }
@@ -621,11 +620,14 @@ function allowDrop(e) {
 }
 function handlerDrop(e,iptName){
     e.preventDefault()
-    const ipt = document.getElementById(iptName)
+    const img = document.getElementById(`iptImg${iptName}`)
+    const ipt = document.getElementById(`iptFile${iptName}`)
+
     const file = e.dataTransfer.files[0]
+    ipt.files = e.dataTransfer.files
     const reader = new FileReader();
     reader.onload = function(event) {
-        ipt.src= event.target.result;
+        img.src= event.target.result;
     };
     reader.readAsDataURL(file);
 }
