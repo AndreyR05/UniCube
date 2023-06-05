@@ -626,9 +626,8 @@ function handlerDrop(e,iptName){
     e.preventDefault()
     const img = document.getElementById(`iptImg${iptName}`)
     const ipt = document.getElementById(`iptFile${iptName}`)
-
-    const file = e.dataTransfer.files[0]
-    ipt.files = e.dataTransfer.files
+    
+    const file = e.dataTransfer ? e.dataTransfer.files[0] : ipt.files[0]
     const reader = new FileReader();
     reader.onload = function(event) {
         img.src= event.target.result;

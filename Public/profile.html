@@ -52,7 +52,7 @@
             <label class="iptImg" for="iptFilePublication" ondragover="allowDrop(event)" ondrop="handlerDrop(event,'Publication')">
                 <img src="assets/icons/downloadIcon.png" id="iptImgPublication">
             </label>
-            <input type="file" id="iptFilePublication">
+            <input type="file" id="iptFilePublication" onchange="handlerDrop(event,'Publication')">
             <input class="iptForm" placeholder="Titulo" id="iptTitle">
             <textarea class="iptDesc" placeholder="Descrição" id="iptDesc"></textarea>
             <div class="divRowModal">
