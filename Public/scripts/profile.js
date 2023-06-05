@@ -438,6 +438,7 @@ function createPublication(){
     const desc = document.getElementById("iptDesc")
     const image = document.getElementById("iptFilePublication")
     const elementImg = document.getElementById("iptImgPublication")
+    const button = document.getElementById("btnCreate")
 
     if(!title.value || !desc.value || !image.files[0]){
         alert("Campos não preenchidos")
@@ -449,6 +450,8 @@ function createPublication(){
         alert("A descrição pode ter no máximo 1000 caracteres")
     }
     else{
+        button.onclick = () => {}
+
         const f = new FormData()
         f.append('image', image.files[0])
         f.append('title', title.value)
@@ -465,6 +468,10 @@ function createPublication(){
             elementImg.src = "assets/icons/downloadIcon.png"
             renderUser(idCuber)
             closeModal()
+            button.onclick = () => createPublication()
+        })
+        .catch(() => {
+            button.onclick = () => createPublication()
         })
     }
 }
