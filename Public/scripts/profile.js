@@ -82,6 +82,7 @@ async function likesByDate(idPublication){
     const  modal = document.getElementById("modalChart")
     const noLikesMsg = document.getElementById("divNoLikes")
     const chartCanvas = document.getElementById("chart")
+    const analytics = document.getElementById("analytics")
     modal.style.display = "flex"
     
     const res = await fetch(`/publication/${idPublication}/likes`)
@@ -90,6 +91,7 @@ async function likesByDate(idPublication){
     if(likes.length > 0){
         noLikesMsg.style.display = "none"
         chartCanvas.style.display = "flex"
+        analytics.style.display = "flex"
 
         let labels = []
         const datePublication = new Date(likes[0].datePublication)
@@ -135,6 +137,7 @@ async function likesByDate(idPublication){
     }else{
         noLikesMsg.style.display = "flex"
         chartCanvas.style.display = "none"
+        analytics.style.display = "none"
     }
 }
 function closeChart(){
