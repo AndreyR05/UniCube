@@ -179,6 +179,7 @@ async function renderUser(idCuber, isVisitor){
     const divCubes = document.getElementById("divCubes")
     const imgUser = document.getElementById("imgUser")
     const changeImage = document.getElementById("txtChangeImg")
+    const labelImage = document.getElementById("labelUser")
 
     divPublications.innerHTML = ""
     divCubes.innerHTML = ""
@@ -190,6 +191,9 @@ async function renderUser(idCuber, isVisitor){
     if(user.imageUrl){
         imgUser.src = `../assets/site/${user.imageUrl}`
         changeImage.style.display = 'none'
+    }
+    if(isVisitor){
+        labelImage.removeAttribute('for')
     }
     username.innerHTML = user.nameCuber
     followers.innerHTML = user.followersCuber
